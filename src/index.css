@@ -1,0 +1,270 @@
+@import url("https://fonts.googleapis.com/css2?family=Monoton&family=Quicksand:wght@500;700&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Manrope:wght@200..800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+    :root {
+        --grid-color-1: #353535; /* Цвет линий сетки */
+        --grid-color-2: #252525; /* Можно задать дополнительные цвета */
+        --rightAnswer: #00e673;
+        --wrongAnswer: #ff6633;
+        --errorHover: #d8a3a3;
+        --accentColor: #a2ede93f;
+        --shadowAccent: "-5px 1px 20px 0px #a2ede93f";
+        
+        --textLight: #e0e0e0;
+        --textLightAccent: #bccaca;
+        --textLightGrey: #adb4b4d2;
+        
+        --background: #1a1a1a;
+        --backgroundDarkGray: #202020;
+        --backgroundDarkGray2:#303030;
+        
+        --borderAccentDark: #74afafa3;
+        --borderAccentLight: #d1f0f02f;
+        --borderGreyLight: #c6cbcdda;
+        --borderGreyDark: #5d6061da;
+        
+        --accent: #8dfff9c1;
+        --accentHover: #70DBD5;
+
+        --accentLight: #ccd1d0ad;
+        --accentBright: #38e4dc;
+        --accentBrightHover: #6bf6ef;
+        --accentDark: #39a09b;
+        --accentDarkHover: #4fbeb8;
+        
+        --backgroundLight: #f0f0f0db;
+        --backgroundLight2: #ffffff;
+        --backgroundLightGray: #dadadaad;
+        
+        
+        --inputBackgroundDark: #3a3a3a;
+        --inputBackgroundLight: #cbeae8;
+        --inputBackgroundWhite: #f0eeeeea;
+        
+        --textDark: #3a3e3e;
+        --radius-size: "3rem";
+
+        --gradient: linear-gradient(
+            43deg,
+            rgba(255, 109, 248, 1) 0%,
+            rgba(0, 243, 255, 1) 30%,
+            rgba(114, 255, 0, 1) 59%,
+            rgba(251, 255, 0, 1) 90%
+          );
+    }
+
+    .light {
+       --input-search-bar: #ffffff;
+       --text-primary: #2e3030;
+       --text-secondary: #3a3e3e;
+       --border-primary: #bbb8b8;
+       --accent-primary: #39a09b;
+
+       --background-primary: #f0f0f0db;
+       --background-secondary: #cdd2d2ad;
+       --background-tertiary: #dadadaad;
+       --background-quaternary: #ccd1d0ad;
+
+       --input-background-primary: #ebebeb;
+
+    }
+
+    .dark {
+        --input-search-bar: #3a3a3a;
+        --text-primary: #e0e0e0;
+        --text-secondary: #bccaca;
+        --border-primary: #5a5c5c;
+        --accent-primary: #8dfff9c1;
+
+        --background-primary: #202020;
+        --background-secondary: #2e2d2d;
+        --background-tertiary: #2f2d2d;
+        --background-quaternary: #3a3a3a;
+
+        --input-background-primary: #3a3a3a;
+    }
+
+
+}
+
+
+    
+    *,
+    *::before,
+    *::after {
+        box-sizing: border-box;
+        padding: 0px;
+        margin: 0px;
+  border: none;
+}
+
+html {
+  font-size: 62.5%;
+}
+
+body {
+  font-size: 2.4rem;
+  font-family: sans-serif;
+  color: var(--main-color);
+  font-family: "Quicksand", sans-serif;
+  font-weight: 500;
+}
+
+html,
+body,
+#root {
+  /* height: 100%; */
+}
+
+a,
+a:link,
+a:visited,
+a:hover {
+  text-decoration: none;
+}
+
+aside,
+nav,
+footer,
+header,
+section,
+main {
+  display: block;
+}
+
+ul,
+ul li {
+  list-style: none;
+}
+
+input:focus,
+input:active,
+button:focus,
+button:active {
+  outline: none;
+}
+
+label {
+  cursor: pointer;
+}
+
+.custom-codeblock pre {
+    @apply rounded-[20px];
+  }
+
+
+/* .gradient-text {
+  background: linear-gradient(
+    43deg,
+    rgba(255, 109, 248, 1) 0%,
+    rgba(0, 243, 255, 1) 30%,
+    rgba(114, 255, 0, 1) 59%,
+    rgba(251, 255, 0, 1) 90%
+  );
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: gradientAnimation 6s infinite linear;
+} */
+
+@keyframes gradientAnimation {
+    0% {
+        background-position: 0% 50%;
+        /* filter: hue-rotate(0deg); */
+      }
+      20% {
+        background-position: 25% 75%;
+        /* filter: hue-rotate(45deg); */
+      }
+      40% {
+        background-position: 50% 100%;
+
+        /* filter: hue-rotate(90deg); */
+      }
+      60% {
+        background-position: 75% 25%;
+
+        /* filter: hue-rotate(135deg); */
+      }
+      80% {
+        background-position: 100% 50%;
+
+        /* filter: hue-rotate(180deg); */
+      }
+      100% {
+        background-position: 0% 50%;
+
+        /* filter: hue-rotate(0deg); */
+      }
+}
+
+.animated-bg-text {
+position: relative;
+  background:
+    linear-gradient(90deg,     rgba(255, 109, 248, 1) 0%,
+    rgba(0, 243, 255, 1) 30%,
+    rgba(114, 255, 0, 1) 59%,
+    rgba(251, 255, 0, 1) 90%)
+      0% 0% / 300% 300%;
+  animation: gradientAnimation 6s infinite alternate linear;
+  -webkit-background-clip: text;
+  background-clip: text;
+  background-size: 300% 100%;
+  background-blend-mode: color;
+  color: transparent;
+  z-index: 10;
+}
+.animated-bg-text::before {
+    inset: 0;
+    position: absolute;
+    content: "";
+    background-clip: text;
+    -webkit-background-clip: text;
+    background-blend-mode: color;
+    background:radial-gradient(circle, rgba(255, 255, 255, 0.3) 1px, transparent 2px) 0 0 /
+    6px 6px;
+    z-index: -9999;
+}
+
+.bg-animated-border {
+  position: relative; /* Чтобы псевдоэлемент был относительно этого контейнера */
+  border: 1rem solid transparent;
+  border-image: linear-gradient(
+    45deg,
+    #ff7e5f,
+    #feb47b,
+    #86a8e7,
+    #7f7fd5,
+    #43cea2,
+    #185a9d
+  ) 1
+}
+
+.bg-animated-border::before {
+  content: ""; /* Псевдоэлемент не должен содержать контент */
+  position: absolute;
+  top: 55px; /* Сдвигаем псевдоэлемент немного вверх */
+  left: -55px; /* Сдвигаем псевдоэлемент немного влево */
+
+  /* Градиент для рамки */
+  border: 12px solid transparent;
+  border-image: linear-gradient(
+      45deg,
+      #ff7e5f,
+      #feb47b,
+      #86a8e7,
+      #7f7fd5,
+      #43cea2,
+      #185a9d
+    )
+    1;
+  animation: gradientAnimation 6s infinite linear; /* Анимация для плавного эффекта */
+  z-index: -1; /* Псевдоэлемент должен быть ниже основного содержимого */
+  width: calc(100% + (55px * 2));
+  height: 90%;
+}
