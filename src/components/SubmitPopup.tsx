@@ -40,10 +40,10 @@ function SubmitPopup({ type, action, onClose }: SubmitPopupProps) {
   };
 
   return (
-    <div className="flex flex-col items-center justify-center gap-8 rounded-2xl bg-background px-40 py-28">
+    <div className="flex flex-col items-center justify-center gap-8 rounded-secondary bg-backgroundPrimary px-40 py-28">
       <IoClose
         onClick={() => onClose()}
-        className="h-20 w-20 -translate-y-20 translate-x-32 cursor-pointer self-end text-green-100 transition-all hover:scale-105 hover:text-accent"
+        className="h-20 w-20 -translate-y-20 translate-x-32 cursor-pointer self-end text-accent transition-all hover:scale-105 hover:text-accentHover"
       />
 
       <div>{submitPopupContentOptions[type].icon}</div>

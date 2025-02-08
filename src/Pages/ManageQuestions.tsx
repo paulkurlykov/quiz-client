@@ -6,9 +6,14 @@ import Spinner from "../components/Spinner";
 import MotionPage from "@/components/MotionPage";
 import SearchBar from "@/components/SearchBar";
 import { Question } from "@/types/main.types";
+import Modal from "@/components/Modal";
+import DeleteConfirmPopup from "@/components/DeleteConfirmPopup";
+import { toast } from "react-hot-toast";
+import useDeleteQuestion from "../hooks/useDeleteQuestion";
+
 
 function ManageQuestions(): JSX.Element | null {
-  const [showModalId, setShowModalId] = useState<string | null>(null);
+  const [showModalId, setShowModalId] = useState<Question['_id'] | null>(null);
   const baseUrl = import.meta.env.VITE_BASE_URL;
   const [query, setQuery] = useState<string>("")
 
@@ -25,6 +30,18 @@ function ManageQuestions(): JSX.Element | null {
       if (String(q[key]).includes(query)) return q;
     }
   } )
+
+  const { dispatch } = useQuestions();
+
+  const deleteHandle = async (id: Question['_id']) => {
+    setShowModalId(null);
+    await useDeleteQuestion(
+      id,
+      dispatch,
+      () => toast.success("Товар успешно удален!"),
+      (error) => toast.error(`Не получилось удалить вопрос! ${error.message}`),
+    );
+  };
 
   return (
     <MotionPage>
@@ -53,6 +70,12 @@ function ManageQuestions(): JSX.Element | null {
             })}
           </ul>
         )}
+{showModalId && <Modal>  <DeleteConfirmPopup
+            onClose={() => setShowModalId(null)}
+            action={() => deleteHandle(showModalId)}
+            title="Вы точно хотите удалить вопрос?"
+            description="Это действие нельзя будет отменить!"
+          /> </Modal>}
       </div>
     </MotionPage>
   );

@@ -1,5 +1,5 @@
 import { createQuestion } from "../api/questionApi";
-import { CompletedFormData, FormData } from "@/types/main.types";
+import { CompletedFormData, MyFormData } from "@/types/main.types";
 import {Dispatch} from 'react';
 import { ActionType } from "@/context/context.types";
 

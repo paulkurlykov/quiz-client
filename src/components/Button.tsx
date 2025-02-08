@@ -23,12 +23,12 @@ function Button({ children, to, type, onClick, addClass = "", size, ...props }: 
     }
 
   const styles = {
-    primary: baseStyle + " bg-accentBright  dark:bg-accent hover:bg-accentBrightHover dark:hover:bg-accentHover shadow-xl dark:shadow-white ",
+    primary: baseStyle + " bg-accentBright  dark:bg-accent hover:bg-accentBrightHover dark:hover:bg-accentHover shadow-dark",
     secondary:
       "inline-block rounded ring ring-red-300 uppercase tracking-wide text-stone-800 transition-colors hover:bg-red-400 focus:outline-none focus:ring focus:ring-red-500 focus:ring-offset-2 active:translate-y-0.5 hover:text-slate-200 hover:ring-transparent",
     error:
       baseStyle +
-      " bg-error text-text hover:bg-edisma",
+      " bg-error text-white  hover:bg-edisma",
     outline: baseStyle + " !text-accent border-2 border-solid border-accent"
   };
 

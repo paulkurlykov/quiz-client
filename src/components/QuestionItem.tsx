@@ -1,6 +1,6 @@
 import { MdDeleteForever } from "react-icons/md";
 import Modal from "./Modal";
-import Popup from "./Popup";
+import Popup from "./DeleteConfirmPopup";
 import { useRef } from "react";
 import { useSearchParams } from "react-router-dom";
 import useDeleteQuestion from "../hooks/useDeleteQuestion";
@@ -32,8 +32,6 @@ function QuestionItem({
       (error) => toast.error(`Не получилось удалить вопрос! ${error.message}`),
     );
   };
-
-  //   console.log(status);
 
   return (
     <li
@@ -73,7 +71,7 @@ function QuestionItem({
         />
 
       </div>
-      {showModalId === question._id && (
+      {/* {showModalId === question._id && (
         <Modal onClick={() => setShowModalId(null)}>
           <Popup
             onClose={() => setShowModalId(null)}
@@ -82,7 +80,7 @@ function QuestionItem({
             description="Это действие нельзя будет отменить!"
           />
         </Modal>
-      )}
+      )} */}
     </li>
   );
 }

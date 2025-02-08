@@ -41,7 +41,7 @@ export default {
     extend: {
       boxShadow: {
         white: "0px 0px 20px -5px #000000",
-        dark: "0px 0px 20px -5px #1d1c1c"
+        dark: "0px 5px 20px -9px #1d1c1c"
       },
       backgroundImage: {
         "grid-pattern": `

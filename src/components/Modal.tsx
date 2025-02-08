@@ -6,6 +6,10 @@ interface ModalProps extends DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, H
 }
 
 function Modal({ children, ...props }: ModalProps) {
+
+console.log('modal is rendered...');
+
+
   return (
     // overlay
     <div

@@ -1,4 +1,4 @@
-import { Question, FormData, CompletedFormData } from "@/types/main.types";
+import { Question, MyFormData, CompletedFormData } from "@/types/main.types";
 
 export const baseUrl = import.meta.env.VITE_BASE_URL;
 
