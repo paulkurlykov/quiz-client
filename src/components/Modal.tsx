@@ -17,7 +17,7 @@ console.log('modal is rendered...');
       {...props}
     >
     {/* put popup as children */}
-      <div >{children}</div>
+      {children}
     </div>
   );
 }

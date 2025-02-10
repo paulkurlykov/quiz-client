@@ -53,7 +53,7 @@ function Navbar({
   return (
     <motion.ul
       style={{ fontSize: textSize }}
-      className={` ${types[type]} list-none items-center justify-between gap-4 p-4`}
+      className={` ${types[type]} list-none items-center justify-between gap-4 p-4 text-primary`}
     >
       {navBarTabs.map((navBarItem) => {
         return (

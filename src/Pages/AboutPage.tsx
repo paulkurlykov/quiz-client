@@ -1,6 +1,7 @@
 import Spinner from "../components/Spinner";
 import CodeSnippet from "@/components/CodeSnippet";
 import MotionPage from "@/components/MotionPage";
+import Title from "@/components/Title";
 
 function AboutPage() {
 
@@ -12,9 +13,7 @@ function AboutPage() {
 
   return (
     <MotionPage>
-      {/* <div>
-        <Spinner />
-      </div> */}
+        <Title className="mb-24" tag="h1" >Просто тест компонента</Title>
       <CodeSnippet>{codeString}</CodeSnippet>
     </MotionPage>
   );
@@ -22,5 +21,3 @@ function AboutPage() {
 
 export default AboutPage;
 
-const uniqueIds = new Set();
-uniqueIds.add(123);

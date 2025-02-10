@@ -10,32 +10,26 @@ import { toast } from "react-hot-toast";
 
 interface QuestionItemProps {
   question: Question;
-  showModalId: string | null;
-  setShowModalId: (id: string | null) => void;
+  setShowModalId: (id: Question['_id'] | null) => void;
+  setShowItemPopup: (id: Question['_id'] | null) => void;
 }
 
 function QuestionItem({
   question,
-  showModalId,
   setShowModalId,
+  setShowItemPopup
 }: QuestionItemProps) {
   const letterLimit = 200;
-  const { dispatch } = useQuestions();
 
-  const deleteHandle = async () => {
-    setShowModalId(null);
-    console.log(question._id);
-    await useDeleteQuestion(
-      question._id,
-      dispatch,
-      () => toast.success("Товар успешно удален!"),
-      (error) => toast.error(`Не получилось удалить вопрос! ${error.message}`),
-    );
-  };
+
+
 
   return (
     <li
-      onClick={() => console.log(question._id)}
+      onClick={(e) => {
+ 
+        setShowItemPopup(question._id);
+      }}
       className="grid grid-cols-1 gap-4 rounded-middle bg-backgroundLightGray dark:bg-backgroundDarkGray2 py-8 px-8  hover:-translate-y-1 shadow-dark cursor-pointer transition-all dark:text-textLight text-textDark "
     >
       <h1 className="text-secondary border-b border-solid border-gray-500 last:border-b-0 border-l-0 border-r-0 border-t-0">{question.question}</h1>
@@ -64,23 +58,14 @@ function QuestionItem({
         <span className="font-secondary text-quaternary uppercase">{`id: ${question?._id && question?._id}`}</span>
 
         <MdDeleteForever
-          onClick={() => {
+          onClick={(e) => {
+            e.stopPropagation();
             setShowModalId(question._id);
           }}
           className="h-[3rem] w-[3rem] cursor-pointer text-accentDark dark:text-accent hover:text-accentHover"
         />
 
       </div>
-      {/* {showModalId === question._id && (
-        <Modal onClick={() => setShowModalId(null)}>
-          <Popup
-            onClose={() => setShowModalId(null)}
-            action={deleteHandle}
-            title="Вы точно хотите удалить вопрос?"
-            description="Это действие нельзя будет отменить!"
-          />
-        </Modal>
-      )} */}
     </li>
   );
 }

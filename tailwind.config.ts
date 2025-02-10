@@ -5,6 +5,7 @@ export default {
   theme: {
 
     borderRadius: {
+      // перестанут работать стандартные классы tailwind border-xl
       primary: "3rem",
       secondary: "2rem",
       mini: "1rem",
@@ -12,10 +13,12 @@ export default {
       full: "100rem"
     },
     fontSize: {
+            // перестанут работать стандартные классы tailwind типа text-xl
       primary: "2rem",
       secondary: "1.8rem",
       tertiary: "1.6rem",
-      quaternary: "1.4rem"
+      quaternary: "1.4rem",
+      little: "1.2rem"
     },
     screens: {
       sm: "640px",
@@ -43,44 +46,14 @@ export default {
         white: "0px 0px 20px -5px #000000",
         dark: "0px 5px 20px -9px #1d1c1c"
       },
-      backgroundImage: {
-        "grid-pattern": `
-          repeating-linear-gradient(
-            to right,
-            var(--grid-color-1),
-            var(--grid-color-2) 1px,
-            transparent 1px,
-            transparent 40px
-          ),
-          repeating-linear-gradient(
-            to bottom,
-            var(--grid-color-1),
-            var(--grid-color-2) 1px,
-            transparent 1px,
-            transparent 40px
-          )
-        `,
-      },
       colors: {
-        background: "var(--background)",
-        backgroundLight: "var(--backgroundLight)",
-        backgroundDarkGray: "var(--backgroundDarkGray)",
-        backgroundDarkGray2: "var(--backgroundDarkGray2)",
-        backgroundLightGray: "var(--backgroundLightGray)",
-        backgroundLight2: "var(--backgroundLight2)",
         backgroundPrimary: "var(--background-primary)",
         backgroundTertiary: "var(--background-tertiary)",
         backgroundSecondary: "var(--background-secondary)",
         backgroundQuaternary: "var(--background-quaternary)",
 
-
-        inputBackgroundDark: "var(--inputBackgroundDark)",
-        inputBackgroundLight: "var(--inputBackgroundLight)",
-        inputBackgroundWhite: "var(--inputBackgroundWhite)",
         inputBackgroundPrimary: "var(--input-background-primary)",
 
-
-        textLight: "var(--textLight)",
         textLightAccent: "var(--textLightAccent)",
         textLightGrey: "var(--textLightGrey)",
         textSecondary: "var(--text-secondary)",
@@ -89,10 +62,6 @@ export default {
         textDarkAccent: "#121A19",
         textPrimary: "var(--text-primary)",
 
-        borderAccentDark: "var(--borderAccentDark)",
-        borderAccentLight: "var(--borderAccentLight)",
-        borderGreyLight: "var(--borderGreyLight)",
-        borderGreyDark: "var(--borderGreyDark)",
         borderPrimary: "var(--border-primary)",
 
         accent: "var(--accent-primary)",

@@ -10,12 +10,16 @@ import Modal from "@/components/Modal";
 import DeleteConfirmPopup from "@/components/DeleteConfirmPopup";
 import { toast } from "react-hot-toast";
 import useDeleteQuestion from "../hooks/useDeleteQuestion";
-
+import QuestionItemPopup from "@/components/QuestionItemPopup";
 
 function ManageQuestions(): JSX.Element | null {
-  const [showModalId, setShowModalId] = useState<Question['_id'] | null>(null);
+  const [showModalId, setShowModalId] = useState<Question["_id"] | null>(null);
+  const [showItemPopup, setShowItemPopup] = useState<Question["_id"] | null>(
+    null,
+  );
+
   const baseUrl = import.meta.env.VITE_BASE_URL;
-  const [query, setQuery] = useState<string>("")
+  const [query, setQuery] = useState<string>("");
 
   const { questions: rawQuestions, status } = useQuestions();
 
@@ -23,17 +27,15 @@ function ManageQuestions(): JSX.Element | null {
     return null;
   }
 
-
   const questions = rawQuestions.filter((q) => {
-
     for (const key of Object.keys(q) as (keyof Question)[]) {
       if (String(q[key]).includes(query)) return q;
     }
-  } )
+  });
 
   const { dispatch } = useQuestions();
 
-  const deleteHandle = async (id: Question['_id']) => {
+  const deleteHandle = async (id: Question["_id"]) => {
     setShowModalId(null);
     await useDeleteQuestion(
       id,
@@ -45,12 +47,10 @@ function ManageQuestions(): JSX.Element | null {
 
   return (
     <MotionPage>
-      <div className="pt-24 px-8 flex flex-col gap-16">
-
-        <Title tag="h1" className="mb-8 text-textDark dark:text-textLight ">
+      <div className="flex flex-col gap-16 px-8 pt-24">
+        <Title tag="h1" className="mb-8 text-textPrimary">
           Управление вопросами
         </Title>
-        <div className="h-[5rem] w-5[rem] bg-colorTest" ></div>
 
         <SearchBar status={status} query={query} setQuery={setQuery} />
 
@@ -63,19 +63,33 @@ function ManageQuestions(): JSX.Element | null {
                 <QuestionRow
                   key={question._id}
                   question={question}
-                  showModalId={showModalId}
+                  setShowItemPopup={setShowItemPopup}
                   setShowModalId={setShowModalId}
                 />
               );
             })}
           </ul>
         )}
-{showModalId && <Modal>  <DeleteConfirmPopup
-            onClose={() => setShowModalId(null)}
-            action={() => deleteHandle(showModalId)}
-            title="Вы точно хотите удалить вопрос?"
-            description="Это действие нельзя будет отменить!"
-          /> </Modal>}
+        {showModalId && (
+          <Modal>
+            {" "}
+            <DeleteConfirmPopup
+              onClose={() => setShowModalId(null)}
+              action={() => deleteHandle(showModalId)}
+              title="Вы точно хотите удалить вопрос?"
+              description="Это действие нельзя будет отменить!"
+            />{" "}
+          </Modal>
+        )}
+
+        {showItemPopup && (
+          <Modal>
+            <QuestionItemPopup
+              id={showItemPopup}
+              onClose={() => setShowItemPopup(() => null)}
+            />
+          </Modal>
+        )}
       </div>
     </MotionPage>
   );

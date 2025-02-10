@@ -5,7 +5,7 @@ import { ButtonProps } from "./types/Button.types";
 
 function Button({ children, to, type, onClick, addClass = "", size, ...props }: ButtonProps) {
   const baseStyle =
-    "inline-block rounded-[2rem] font-semibold uppercase tracking-wide transition-colors text-background  focus:outline-none focus:ring focus:ring-cyan-500 focus:ring-offset-2 active:translate-y-0.5 mt-8";
+    "inline-block rounded-[2rem] font-semibold uppercase tracking-wide transition-colors text-textPrimary  focus:outline-none focus:ring focus:ring-cyan-500 focus:ring-offset-2 active:translate-y-0.5 mt-8";
 
   if (to)
     return (

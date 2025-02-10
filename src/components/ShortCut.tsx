@@ -12,7 +12,7 @@ function ShortCut({children, title}: {children: ReactNode, title: string}) {
         onClick={() => setShowAnswer((st) => !st)}
         className=" mt-2 rounded-3xl border-gray-50 px-12 py-12 text-4xl font-bold"
       >
-        <div className="hover:text-accentDark flex cursor-pointer items-center gap-2 text-textDark dark:text-textLight dark:hover:text-accent">
+        <div className="hover:text-accentDark flex cursor-pointer items-center gap-2 text-textPrimary dark:hover:text-accent">
           <IoIosArrowForward
             className={` ${showAnswer ? "rotate-90" : ""} h-[5rem] w-[5rem] transition-all`}
           />

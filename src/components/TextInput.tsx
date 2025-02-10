@@ -10,9 +10,9 @@ interface TextInputProps extends DetailedHTMLProps<InputHTMLAttributes<HTMLInput
 function TextInput({ name, label, errorLabel, ...field}: TextInputProps) {
 
   return (
-    <div className="flex flex-col gap-2">
+    <div className="flex md:w-1/2 md:max-w-[35rem] flex-col gap-2">
       <label className="text-secondary" htmlFor={name}>{label}</label>
-      <input {...field} id={name} className={`max-w-[30rem] border ${errorLabel ? " border-error" : "dark:border-borderAccentLight border-borderAccentDark"} border-solid rounded-mini p-4 text-2xl text-text bg-inputBackgroundWhite  dark:bg-inputBackgroundDark`} />
+      <input {...field} id={name} className={`w-full border ${errorLabel ? " border-error" : "dark:border-borderAccentLight border-borderAccentDark"} border-solid rounded-mini p-4 text-tertiary bg-inputBackgroundPrimary`} />
       <label  className="text-error text-[1.5rem]"  >{errorLabel}</label>
     </div>
   );

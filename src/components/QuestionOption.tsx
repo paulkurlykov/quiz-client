@@ -24,7 +24,7 @@ function QuestionOption({
     right: {
       border: `2px solid var(--rightAnswer)`,
       scale: [1, 1.05, 1.1],
-      transition: { duration: 1, ease: [0.455, 0.03, 0.515, 0.555] },
+      transition: { duration: .6, ease: [0.455, 0.03, 0.515, 0.555] },
     },
     wrong: {
       border: `2px solid var(--wrongAnswer)`,

@@ -35,7 +35,7 @@ function Form() {
   const { status, message, dispatch, questions } = useQuestions();
 
   const textInputWrapperClass =
-    "flex flex-col md:flex-row gap-4 md:gap-16 items-start md:items-center justify-start border border-solid border-borderPrimary p-6 rounded-mini";
+    "flex flex-col md:flex-row gap-4 md:gap-16 items-start md:items-center justify-start md:flex border border-solid border-borderPrimary p-6 rounded-mini";
 
   const {
     register,
@@ -207,80 +207,6 @@ function Form() {
                         </AnswerOption>
                       ))}
 
-                      {/* <div className={textInputWrapperClass}>
-                        <Controller
-                          name="option2"
-                          control={control}
-                          rules={{ required: "Укажи вариант ответа!" }}
-                          defaultValue={""}
-                          render={({ field }) => (
-                            <TextInput
-                              {...field}
-                              label="Вариант 2"
-                              errorLabel={errors?.option2?.message}
-                              ref={null}
-                            />
-                          )}
-                        />
-                      </div>
-
-                      <div className={textInputWrapperClass}>
-                        <Controller
-                          name="option3"
-                          control={control}
-                          rules={{ required: "Укажи вариант ответа!" }}
-                          defaultValue={""}
-                          render={({ field }) => (
-                            <TextInput
-                              {...field}
-                              label="Вариант 3"
-                              errorLabel={errors?.option3?.message}
-                              ref={null}
-                            />
-                          )}
-                        />
-                      </div>
-
-                      <div className={textInputWrapperClass}>
-                        <Controller
-                          name="option4"
-                          control={control}
-                          rules={{ required: "Укажи вариант ответа!" }}
-                          defaultValue={""}
-                          render={({ field }) => (
-                            <TextInput
-                              {...field}
-                              label="Вариант 4"
-                              errorLabel={errors?.option4?.message}
-                              ref={null}
-                            />
-                          )}
-                        />
-                      </div> */}
-
-                      {/* {rightAswerOptions.map((option) => (
-                        <Controller
-                          key={option.id}
-                          name="rightAnswer"
-                          control={control}
-                          defaultValue={rightAswerOptions[0]?.id}
-                          render={({ field: { onChange, value } }) => (
-                            <RadioInput
-                              checked={value === option.id}
-                              id={option.id}
-                              value={option.id}
-                              onChange={onChange}
-                              label={option.label}
-                              addStyles="flex-col"
-                              handle={null}
-                            >
-                              {value === option.id && (
-                                <span>Правильный ответ</span>
-                              )}
-                            </RadioInput>
-                          )}
-                        />
-                      ))} */}
                     </div>
                   </FormSection>
                 </Motion>

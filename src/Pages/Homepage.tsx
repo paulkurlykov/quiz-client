@@ -49,7 +49,7 @@ function Homepage() {
 
   }, [answerType, filteredTopics, questions, maxQuestionsNum]);
 
-  console.log(filteredQuestions.length);
+  // console.log(filteredQuestions.length);
 
   return (
     <MotionPage>
