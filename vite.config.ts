@@ -17,6 +17,10 @@ export default defineConfig(({ mode }) => {
             }
           : undefined,
     },
+    build: {
+      outDir: '/var/www/quiz/dist', // Путь, куда будет собираться билд
+      emptyOutDir: true, // Удалит старые файлы перед билдом
+    },
 
     plugins: [react()],
     optimizeDeps: {
