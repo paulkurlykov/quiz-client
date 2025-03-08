@@ -4,7 +4,7 @@ export const baseUrl = import.meta.env.VITE_BASE_URL;
 
 export const getQuestions = async () => {
   try {
-    const res = await fetch(`${baseUrl}/question`);
+    const res = await fetch(`api/question`);
     if (!res.ok) throw new Error("could not fetch data");
     const data = await res.json();
     if (data.length !== 0) return data;
@@ -16,7 +16,7 @@ export const getQuestions = async () => {
 
 export async function createQuestion(question: CompletedFormData) {
   try {
-    const res = await fetch(`${baseUrl}/question`, {
+    const res = await fetch(`api/question`, {
       method: "POST",
       body: JSON.stringify(question),
       headers: {
@@ -36,7 +36,7 @@ export async function createQuestion(question: CompletedFormData) {
 
 export async function deleteQuestion(id: Question['_id']) {
   try {
-    const res = await fetch(`${baseUrl}/question/${id}`, {
+    const res = await fetch(`api/question/${id}`, {
       method: "DELETE",
     });
     if (!res.ok) throw new Error(`couldn't delete question`);

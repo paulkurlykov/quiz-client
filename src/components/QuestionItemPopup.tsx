@@ -21,7 +21,7 @@ function QuestionItemPopup({ id, onClose, action }: QuestionItemPopup) {
   if (!question) return null;
 
   return (
-    <div className="mt-32 flex w-3/4 flex-col gap-4 rounded-secondary bg-backgroundPrimary px-16 pb-12 pt-8 text-textPrimary">
+    <div className="mt-32 flex w-3/4 h-[75vh] overflow-y-auto flex-col gap-4 rounded-secondary bg-backgroundPrimary px-16 pb-12 pt-8 text-textPrimary">
       <IoClose
         onClick={onClose}
         className="mb-4 h-12 w-12 cursor-pointer self-end transition hover:scale-125 hover:text-accent"
