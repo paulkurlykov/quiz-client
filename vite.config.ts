@@ -17,6 +17,7 @@ export default defineConfig(({ mode }) => {
             }
           : undefined,
     },
+    base: "/quiz/",
     build: {
       outDir: '/var/www/quiz/dist', // Путь, куда будет собираться билд
       emptyOutDir: true, // Удалит старые файлы перед билдом
