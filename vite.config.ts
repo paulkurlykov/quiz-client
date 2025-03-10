@@ -19,7 +19,7 @@ export default defineConfig(({ mode }) => {
     },
     base: "/quiz/",
     build: {
-      outDir: '/var/www/quiz/dist', // Путь, куда будет собираться билд
+      outDir: '/var/www/quizapp/dist', // Путь, куда будет собираться билд
       emptyOutDir: true, // Удалит старые файлы перед билдом
     },
 
