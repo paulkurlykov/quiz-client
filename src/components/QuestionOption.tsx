@@ -55,7 +55,7 @@ function QuestionOption({
         variants={animationOptions}
         initial={false}
         exit="exit"
-        className={`group flex cursor-pointer select-none items-center justify-center rounded-middle border-solid border-darkAccent border-opacity-0 bg-accentLight dark:bg-inputBackgroundDark pr-4 transition hover:border-accentDark hover:border-2 dark:hover:border-accent active:translate-y-2`}
+        className={`group flex cursor-pointer select-none items-center justify-center rounded-middle border-solid border-darkAccent border-opacity-0 bg-backgroundQuaternary pr-4 transition hover:border-accentDark hover:border-2 dark:hover:border-accent active:translate-y-2`}
       >
         <span className="text-bold basis-1/4 self-center text-center text-[6rem] md:text-[8rem] italic leading-none group-hover:text-accentDark dark:group-hover:text-accent">
           {num}

@@ -16,7 +16,6 @@ function AppLayout() {
         <Header />
         <NoiseCanvas />
         <TagMain>
-          {/* {isHomePage && <CanvasBackground />} */}
           <Outlet />
         </TagMain>
 

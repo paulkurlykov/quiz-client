@@ -9,10 +9,11 @@ export default defineConfig(({ mode }) => {
       proxy:
         mode === "development"
           ? {
-              "/api": {
+              "/quizapp/api": {
                 target: "http://localhost:3000",
                 changeOrigin: true,
                 secure: false,
+                rewrite: (path) => path.replace(/^\/quizapp/, ""), // Убираем /quizapp из пути
               },
             }
           : undefined,

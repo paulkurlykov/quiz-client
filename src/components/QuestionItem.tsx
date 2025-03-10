@@ -30,7 +30,7 @@ function QuestionItem({
  
         setShowItemPopup(question._id);
       }}
-      className="grid grid-cols-1 gap-4 rounded-middle bg-backgroundLightGray dark:bg-backgroundDarkGray2 py-8 px-8  hover:-translate-y-1 shadow-dark cursor-pointer transition-all dark:text-textLight text-textDark "
+      className="grid grid-cols-1 gap-4 rounded-middle bg-backgroundSecondary py-8 px-8  hover:-translate-y-1 shadow-dark cursor-pointer transition-all dark:text-textLight text-textDark "
     >
       <h1 className="text-secondary border-b border-solid border-gray-500 last:border-b-0 border-l-0 border-r-0 border-t-0">{question.question}</h1>
 
@@ -55,7 +55,7 @@ function QuestionItem({
 
       <div className="grid grid-cols-[1fr,_auto] justify-center items-end grid-rows-1 justify-between border-b border-solid border-gray-500 last:border-b-0 border-l-0 border-r-0 border-t-0">
 
-        <span className="font-secondary text-quaternary uppercase">{`id: ${question?._id && question?._id}`}</span>
+        <span className="font-secondary text-[1rem] uppercase">{`id: ${question?._id && question?._id}`}</span>
 
         <MdDeleteForever
           onClick={(e) => {

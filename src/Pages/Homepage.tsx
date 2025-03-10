@@ -57,7 +57,7 @@ function Homepage() {
 
         {/* TITLE  */}
 
-        <h1 className="animated-bg-text leading-[initial] md:leading-[inherit] animated-bg-dots relative text-[12rem] font-extrabold uppercase">
+        <h1 className="animated-bg-text hyphens-auto break-words leading-[initial] md:leading-[inherit] animated-bg-dots relative text-[12rem] font-extrabold uppercase">
           The frontend quiz{" "}
           <span className="text-[8rem] font-extrabold text-[initial]">
             🚀🚀🚀

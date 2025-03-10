@@ -73,7 +73,7 @@ function Header() {
       <TbMenuDeep onClick={() => setShowMenu(true)} className="cursor-pointer active:scale-95 block md:hidden" />
     </motion.header>
 
-    <MobileMenu showMenu={showMenu} onClose={setShowMenu} > <div className="absolute z-[9000] w-full h-full inset-0 flex flex-col justify-start pt-32 gap-64 items-center bg-white/90" >
+    <MobileMenu showMenu={showMenu} onClose={setShowMenu} > <div className="absolute z-[9000] w-full h-full inset-0 flex flex-col justify-start pt-32 gap-64 items-center bg-backgroundPrimary" >
       <Switch addStyles="block md:hidden" checked={isDark} onChange={toggleDarkMode} />
         <Navbar closeShowMenu={setShowMenu} type="mobile" textSize={fontSize} />
         </div> </MobileMenu>

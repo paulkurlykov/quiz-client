@@ -105,7 +105,7 @@ function QuizBody() {
             percent={percent}
             // status="active"
             size={progressBarWidth}
-            strokeColor={twoColors}
+            strokeColor="var(--accent-primary)"
             trailColor="#bbbaba"
             format={(percent) => (
               <>
@@ -151,8 +151,8 @@ function QuizBody() {
         >
           {/* TITLE */}
 
-          <div className="bg-accentLight dark:bg-inputBackgroundDark rounded-middle border-gray-50 px-12 py-12 text-3xl font-bold md:text-5xl">
-            <p>{currentQuestion?.question}</p>
+          <div className="bg-backgroundQuaternary rounded-middle border-gray-50 px-12 py-12 text-primary font-bold md:text-5xl">
+            <p className="text-inherit" >{currentQuestion?.question}</p>
           </div>
 
           {/* OPTIONS */}

@@ -61,6 +61,7 @@ export default {
         textDark: "var(--textDark)",
         textDarkAccent: "#121A19",
         textPrimary: "var(--text-primary)",
+        textLight: "var(--textLight)",
 
         borderPrimary: "var(--border-primary)",
 

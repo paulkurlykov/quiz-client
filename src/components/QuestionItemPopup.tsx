@@ -21,23 +21,32 @@ function QuestionItemPopup({ id, onClose, action }: QuestionItemPopup) {
   if (!question) return null;
 
   return (
-    <div className="mt-32 flex w-3/4 h-[75vh] overflow-y-auto flex-col gap-4 rounded-secondary bg-backgroundPrimary px-16 pb-12 pt-8 text-textPrimary">
-      <IoClose
-        onClick={onClose}
-        className="mb-4 h-12 w-12 cursor-pointer self-end transition hover:scale-125 hover:text-accent"
-      />
+    <div className="mt-32 flex h-[75vh] w-3/4 flex-col gap-4 overflow-y-hidden rounded-secondary bg-backgroundPrimary px-16 pb-12 pt-8 text-textPrimary">
+      <div className="h-12 w-full flex justify-end" >
+        <IoClose
+          onClick={onClose}
+          className="h-full cursor-pointer self-end transition hover:scale-125 hover:text-accent"
+        />
+      </div>
       <Title className="mb-24" tag="h1">
         {question.question}
       </Title>
 
       {question.options.length ? (
-        <div className="flex flex-col gap-4" >
+        <div className="flex flex-col gap-4">
           {question.options.map((opt, i) => (
-            <span key={i} className={`${Number(question.rightAnswer) === i+1 ? "text-sky-700 font-bold" : ""}`} >Вариант {i+1}: {opt}</span>
+            <span
+              key={i}
+              className={`${Number(question.rightAnswer) === i + 1 ? "font-bold text-sky-700" : ""}`}
+            >
+              Вариант {i + 1}: {opt}
+            </span>
           ))}
         </div>
       ) : (
-        <p className="text-tertiary whitespace-pre-line">{question.textAnswer}</p>
+        <p className="whitespace-pre-line text-tertiary">
+          {question.textAnswer}
+        </p>
       )}
 
       {question.codeSnippet && (
