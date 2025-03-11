@@ -1,5 +1,6 @@
 import { createContext, ReactNode, useState, useContext, useEffect } from "react";
 
+
 interface DarkModeContextState {
   isDark: boolean;
   toggleDarkMode: () => void;

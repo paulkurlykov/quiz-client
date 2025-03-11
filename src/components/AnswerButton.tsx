@@ -24,7 +24,7 @@ function AnswerButton({ children, type, onClick }: AnswerButtonProps) {
     back: "ml-auto"
   }
 
-  const baseStyle = `group rounded-mini border-1 border-solid border-borderGreyDark dar:borderGreyLight px-2 py-8 flex items-center gap-4 md:gap-6 w-[18rem] md:w-[20rem] justify-center cursor-pointer ${styleOptions[type]} transition duration-300  active:translate-y-1`;
+  const baseStyle = `group rounded-mini border-1 border-solid border-borderPrimary px-2 py-8 flex items-center gap-4 md:gap-6 w-[18rem] md:w-[20rem] justify-center cursor-pointer ${styleOptions[type]} transition duration-300  active:translate-y-1`;
 
   const iconStyle = "transition group-hover:scale-110 text-[2rem] md:text-[3rem]"
   

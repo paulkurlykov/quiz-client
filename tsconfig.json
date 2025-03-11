@@ -2,7 +2,7 @@
     "compilerOptions": {
       "target": "ES2020", // Целевая версия ECMAScript
       "lib": ["DOM", "DOM.Iterable", "ESNext"], // Используемые библиотеки
-      "module": "ESNext", // Использование модулей ESNext
+      "module": "ES2020", // Использование модулей ESNext
       "moduleResolution": "Node", // Разрешение модулей в стиле Node.js
       "strict": true, // Включение строгой проверки типов
       "jsx": "react-jsx", // Поддержка JSX (React 17+)
@@ -12,8 +12,8 @@
       "resolveJsonModule": true, // Разрешение импорта JSON-файлов
       "isolatedModules": true, // Убедитесь, что каждый файл — независимый модуль
       "noEmit": true, // Не генерировать файлы (Vite сам занимается сборкой)
-      "allowJs": true, // Разрешить использование JavaScript-файлов (полезно при миграции)
-      "checkJs": true, // Проверять типы в JavaScript-файлах
+      "allowJs": true, // разрешить использование js файлов (иначе будет ругаться на формат)
+      "checkJs": true, // проверять типы в js файлах
       "outDir": "./dist", // Папка для сгенерированных файлов (если нужно)
       "rootDir": "./src", // Корневая папка с исходным кодом
       "baseUrl": ".", // Базовый путь для разрешения модулей

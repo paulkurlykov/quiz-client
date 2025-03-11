@@ -203,7 +203,7 @@ function QuizBody() {
                 transition={{ duration: 0.5 }}
                 className="flex flex-col gap-4 overflow-hidden"
               >
-                <div className="bg-accentLight mt-2 rounded-secondary border border-gray-50 px-12 py-12 text-tertiary ">
+                <div className="bg-backgroundQuaternary mt-2 rounded-secondary border border-gray-50 px-12 py-12 text-tertiary ">
                   <p className="whitespace-pre-wrap">
                     {`${currentQuestion?.textAnswer}`}
                   </p>
@@ -212,7 +212,7 @@ function QuizBody() {
                 {/* code snippet */}
 
                 {currentQuestion.codeSnippet && (
-                  <div className="bg-accentLight mt-2 rounded-secondary border border-gray-50 px-12 py-12">
+                  <div className="bg-backgroundQuaternary mt-2 rounded-secondary border border-gray-50 px-12 py-12">
                     {<CodeSnippet>{currentQuestion?.codeSnippet}</CodeSnippet>}
                   </div>
                 )}
