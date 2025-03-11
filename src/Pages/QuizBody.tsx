@@ -184,11 +184,11 @@ function QuizBody() {
               {/* shortcut panel */}
               <div
                 onClick={() => setShowAnswer((st) => !st)}
-                className="bg-backgroundQuaternary mt-2 rounded-secondary border-gray-50 p-8 text-3xl font-bold md:p-12 md:text-4xl"
+                className="bg-backgroundQuaternary mt-2 rounded-secondary border-gray-50 p-8 text-secondary font-bold md:p-12 md:text-primary"
               >
                 <div className="hover:text-accentDark flex cursor-pointer items-center gap-2 dark:hover:text-accent">
                   <IoIosArrowForward
-                    className={` ${showAnswer ? "rotate-90" : ""} h-[5rem] w-[5rem] text-3xl transition-all`}
+                    className={` ${showAnswer ? "rotate-90" : ""} h-[5rem] w-[5rem] transition-all`}
                   />
                   <p className="cursor-pointer transition-all">{`${showAnswer ? "Убрать ответ" : "Показать ответ"}`}</p>
                 </div>
@@ -203,7 +203,7 @@ function QuizBody() {
                 transition={{ duration: 0.5 }}
                 className="flex flex-col gap-4 overflow-hidden"
               >
-                <div className="bg-accentLight mt-2 rounded-secondary border border-gray-50 px-12 py-12 text-primary dark:bg-inputBackground">
+                <div className="bg-accentLight mt-2 rounded-secondary border border-gray-50 px-12 py-12 text-tertiary ">
                   <p className="whitespace-pre-wrap">
                     {`${currentQuestion?.textAnswer}`}
                   </p>
@@ -212,7 +212,7 @@ function QuizBody() {
                 {/* code snippet */}
 
                 {currentQuestion.codeSnippet && (
-                  <div className="bg-accentLight mt-2 rounded-secondary border border-gray-50 px-12 py-12 text-3xl dark:bg-inputBackground">
+                  <div className="bg-accentLight mt-2 rounded-secondary border border-gray-50 px-12 py-12">
                     {<CodeSnippet>{currentQuestion?.codeSnippet}</CodeSnippet>}
                   </div>
                 )}

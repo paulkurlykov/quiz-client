@@ -3,6 +3,7 @@ import { useNavigate, useLocation } from "react-router-dom";
 import { useEffect } from "react";
 import { NavBarItem, NavBarTab } from "./Navbar";
 import { useDarkModeContext } from "@/context/darkMode.context";
+import { Link } from "react-router-dom";
 
 
 interface NavBarItemProps {
@@ -47,9 +48,13 @@ function NavbarItem({
       initial={isDark ? "dark" : "light"}
       animate={isSelected ? (isDark ? "activeDark" : "activeLight") : (isDark ? "dark" : "light")}
     >
-      <a className="block w-full" href="#">
+      {/* <a className="block w-full" href="">
         {navBarItem.tab}
-      </a>
+      </a> */}
+
+      <Link className="block w-full" to={navBarItem.path} >
+      {navBarItem.tab}
+      </Link>
       {isSelected && <ActiveLine />}
     </motion.li>
   );

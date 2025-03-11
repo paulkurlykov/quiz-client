@@ -17,7 +17,7 @@ function App() {
     <MainProvider>
       <DarkModeProvider>
         <FilterContextProvider>
-          <BrowserRouter basename="/quizapp" >
+          <BrowserRouter basename="/quizapp/" >
             <Routes>
               <Route element={<AppLayout />}>
                 <Route path="/" element={<Homepage />} />

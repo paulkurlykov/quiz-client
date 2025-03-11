@@ -65,7 +65,7 @@ function Navbar({
             handleClick={() => {
               dispatch({ type: "clear" });
               setActive(navBarItem.tab);
-              navigate(`${navBarItem.path}`);
+              // navigate(`${navBarItem.path}`);
               closeShowMenu && closeShowMenu(false);
             }}
           />

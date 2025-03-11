@@ -45,7 +45,7 @@ function AnswerButton({ children, type, onClick }: AnswerButtonProps) {
   return (
     <div onClick={onClick} className={`${baseStyle}`}>
       {iconRenderOptions[type]}
-      <span className=" text-tertiary md:text-secondary font-bold whitespace-nowrap">{children}</span>
+      <span className=" text-tertiary font-semibold whitespace-nowrap">{children}</span>
     </div>
   );
 }
