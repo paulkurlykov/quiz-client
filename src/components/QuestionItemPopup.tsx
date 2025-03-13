@@ -21,13 +21,7 @@ function QuestionItemPopup({ id, onClose, action }: QuestionItemPopup) {
   if (!question) return null;
 
   return (
-    <div className="mt-32 flex h-[75vh] w-3/4 flex-col gap-4 overflow-y-hidden rounded-secondary bg-backgroundPrimary px-16 pb-12 pt-8 text-textPrimary">
-      <div className="h-12 w-full flex justify-end" >
-        <IoClose
-          onClick={onClose}
-          className="h-full cursor-pointer self-end transition hover:scale-125 hover:text-accent"
-        />
-      </div>
+    <>
       <Title className="mb-24" tag="h1">
         {question.question}
       </Title>
@@ -54,7 +48,7 @@ function QuestionItemPopup({ id, onClose, action }: QuestionItemPopup) {
           {<CodeSnippet>{question?.codeSnippet}</CodeSnippet>}
         </div>
       )}
-    </div>
+    </>
   );
 }
 

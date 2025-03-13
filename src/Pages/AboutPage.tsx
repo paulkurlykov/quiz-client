@@ -1,9 +1,10 @@
-import Spinner from "../components/Spinner";
 import CodeSnippet from "@/components/CodeSnippet";
 import MotionPage from "@/components/MotionPage";
 import Title from "@/components/Title";
 
 function AboutPage() {
+
+  const erorr = new Error('this is for ERROR test')
 
     const codeString = `const map = new Map();
 

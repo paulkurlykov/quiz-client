@@ -23,9 +23,9 @@ function ManageQuestions(): JSX.Element | null {
 
   const { questions: rawQuestions, status } = useQuestions();
 
-  if (!rawQuestions) {
-    return null;
-  }
+  // if (!rawQuestions) {
+  //   return null;
+  // }
 
   const questions = rawQuestions.filter((q) => {
     for (const key of Object.keys(q) as (keyof Question)[]) {
@@ -48,9 +48,15 @@ function ManageQuestions(): JSX.Element | null {
   return (
     <MotionPage>
       <div className="flex flex-col gap-16 px-8 pt-24">
-        <Title tag="h1" className="mb-8 text-textPrimary">
+
+        <div className="mb-8 flex flex-col gap-8" >
+
+        <Title tag="h1" className="text-textPrimary">
           Управление вопросами
         </Title>
+
+        <Title tag="h3" >Всего вопросов: {rawQuestions.length}</Title>
+        </div>
 
         <SearchBar status={status} query={query} setQuery={setQuery} />
 
@@ -71,7 +77,9 @@ function ManageQuestions(): JSX.Element | null {
           </ul>
         )}
         {showModalId && (
-          <Modal>
+          <Modal
+          onClose={() => setShowModalId(null)}
+          >
             {" "}
             <DeleteConfirmPopup
               onClose={() => setShowModalId(null)}
@@ -83,7 +91,9 @@ function ManageQuestions(): JSX.Element | null {
         )}
 
         {showItemPopup && (
-          <Modal>
+          <Modal
+          onClose={() => setShowItemPopup(() => null)}
+          >
             <QuestionItemPopup
               id={showItemPopup}
               onClose={() => setShowItemPopup(() => null)}
