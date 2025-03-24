@@ -20,14 +20,14 @@ export default defineConfig(({ mode }) => {
     },
     base: "/quizapp/",
     build: {
-      // outDir: '/var/www/quizapp/dist', // Путь, куда будет собираться билд
-      outDir: 'dist', // Путь, куда будет собираться билд
+      outDir: '/var/www/quizapp/dist', // Путь, куда будет собираться билд
+      // outDir: 'dist', // Путь, куда будет собираться билд
       emptyOutDir: true, // Удалит старые файлы перед билдом
     },
 
     plugins: [react()],
     optimizeDeps: {
-      include: ["react", "react-dom"],
+      include: ["react", "react-dom", "react-error-boundary"],
     },
     esbuild: {
       jsxInject: `import React from 'react'`,
