@@ -1,4 +1,5 @@
 /** @type {import('tailwindcss').Config} */
+
 export default {
   content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
   darkMode: "class",
@@ -39,7 +40,9 @@ export default {
     fontFamily: {
       primary: "Raleway",
       secondary: "Inter",
-      tertiary: "Manrope"
+      tertiary: "Manrope",
+      interTight: "Inter Tight",
+
     },
     extend: {
       boxShadow: {
@@ -66,7 +69,7 @@ export default {
         borderPrimary: "var(--border-primary)",
 
         accent: "var(--accent-primary)",
-        accentHover: "var(--accentHover)",
+        accentHover: "var(--accent-hover)",
         accentBright: "var(--accentBright)",
         accentBrightHover: "var(--accentBrightHover)",
         accentLight: "var(--accentLight)",

@@ -3,17 +3,19 @@ import { useState } from "react";
 import { Controller } from "react-hook-form";
 import RadioInput from "./RadioInput";
 import { cloneElement } from "react";
-import { TopicOption, TypeQuestionOption } from "@/data/helperData.types";
+import { TopicOption, TypeQuestionOption, rightAnswerOption } from "@/data/helperData.types";
 import { Control } from "react-hook-form";
 import { FieldValues } from "react-hook-form";
-import { Level, MyFormData } from "@/types/main.types";
+import { Level, QuestionFields } from "@/types/main.types";
 import { topicOptions } from "@/data/helperData";
+import { Dispatch, SetStateAction } from "react";
 
 interface RadioInputGroupBaseProps {
-  control: Control<MyFormData>;
+  control: Control<QuestionFields>;
   hidden: boolean | null;
   addStyles: string;
-  handle: ((event: string) => void) | null;
+  handle: Dispatch<SetStateAction<"options" | "text">> | null;
+  defaultValue: TypeQuestionOption['id'] | undefined;
 }
 
 interface TopicOptionsProps extends RadioInputGroupBaseProps {
@@ -53,6 +55,7 @@ function RadioInputGroup({
   addStyles,
   render,
   handle,
+  defaultValue
 }: RadioInputGroupProps) {
   return (
     <>
@@ -64,7 +67,7 @@ function RadioInputGroup({
             key={option.id}
             name={name}
             control={control}
-            defaultValue={options[0]?.id}
+            defaultValue={defaultValue}
             render={({ field: { onChange, value } }) => (
               <RadioInput
                 checked={value === option.id}

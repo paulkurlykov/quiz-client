@@ -21,6 +21,8 @@ interface SubmitPopupContentOption {
 function SubmitPopup({ type, action, onClose }: SubmitPopupProps) {
   const navigate = useNavigate();
 
+  console.log('success result popup');
+
   const submitPopupContentOptions: Record<
     SubmitPopupProps["type"],
     SubmitPopupContentOption
@@ -40,11 +42,7 @@ function SubmitPopup({ type, action, onClose }: SubmitPopupProps) {
   };
 
   return (
-    <div className="flex flex-col items-center justify-center gap-8 rounded-secondary bg-backgroundPrimary px-40 py-28">
-      <IoClose
-        onClick={() => onClose()}
-        className="h-20 w-20 -translate-y-20 translate-x-32 cursor-pointer self-end text-accent transition-all hover:scale-105 hover:text-accentHover"
-      />
+    <div className="flex flex-col items-center justify-center gap-8 rounded-secondary bg-backgroundPrimary px-40 pb-18">
 
       <div>{submitPopupContentOptions[type].icon}</div>
       <div className="flex flex-col gap-4">

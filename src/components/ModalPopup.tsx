@@ -8,7 +8,7 @@ type ModalPopupProps = {
 
 const ModalPopup = forwardRef<HTMLDivElement, ModalPopupProps>(({ children, onClose }, ref) => {
   return (
-    <div ref={ref} className="mt-32 flex max-h-[75vh] w-3/4 flex-col gap-12 overflow-y-scroll rounded-secondary bg-backgroundPrimary px-16 py-12 pb-16 text-textPrimary">
+    <div ref={ref} className="mt-32 flex max-h-[75vh] w-3/4 flex-col gap-12 rounded-secondary bg-backgroundPrimary px-16 py-12 pb-16 text-textPrimary">
       <div className="flex h-[4rem] w-full justify-end flex-shrink-0">
         <IoClose
           onClick={onClose}
@@ -16,7 +16,7 @@ const ModalPopup = forwardRef<HTMLDivElement, ModalPopupProps>(({ children, onCl
         />
       </div>
 
-      <div>{children}</div>
+      <>{children}</>
     </div>
   );
 });

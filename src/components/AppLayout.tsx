@@ -12,7 +12,7 @@ function AppLayout() {
 
   return (
     <>
-      <div className="LAYOUT items-center text-textPrimary relative flex w-full min-h-screen flex-col font-primary transition-colors duration-200 bg-backgroundPrimary ">
+      <div className="LAYOUT items-center text-textPrimary sticky flex w-full min-h-screen flex-col font-primary transition-colors duration-200 bg-backgroundPrimary ">
         <Header />
         <NoiseCanvas />
         <TagMain>

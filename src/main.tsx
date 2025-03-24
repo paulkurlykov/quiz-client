@@ -2,8 +2,6 @@ import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 import App from "./App.jsx";
 import "./index.css";
-import NoiseCanvas from "./components/NoiseCanvas.js";
-import CanvasBackground from "./components/CanvasBackground.js";
 import { ErrorBoundary } from "react-error-boundary";
 import ErrorComponent from "./components/ErrorComponent.js";
 
@@ -21,7 +19,7 @@ const root = createRoot(rootElement as HTMLElement);
 root.render(
   <StrictMode>
     <ErrorBoundary onReset={() => window.location.replace('/')} FallbackComponent={ErrorComponent}>
-      <App />
+      <App/>
     </ErrorBoundary>
   </StrictMode>,
 );

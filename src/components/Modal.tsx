@@ -4,9 +4,9 @@ import {
   HTMLAttributes,
   ReactNode,
   useRef,
-  useEffect,
 } from "react";
 import ModalPopup from "./ModalPopup";
+import { createPortal } from "react-dom";
 
 interface ModalProps
   extends DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDivElement> {
@@ -14,22 +14,30 @@ interface ModalProps
   onClose: () => void;
 }
 
+
+
 function Modal({ children, onClose }: ModalProps) {
-  console.log("modal is rendered...");
+
+  const layoutEl = document.querySelector('.LAYOUT');
+  // console.log("modal is rendered...");
 
   const popupRef = useRef<HTMLDivElement>(null);
 
   useOutsideClick(onClose, popupRef);
 
-  return (
+  if(!layoutEl) return null;
+
+  return createPortal(
     // overlay
     <div
-      className={`fixed inset-0 z-10 flex min-h-screen w-screen items-center justify-center bg-black/75`}
+      className={`fixed inset-0 z-1000 flex min-h-screen w-screen items-center justify-center bg-black/75`}
     >
       <ModalPopup ref={popupRef} onClose={onClose}>
         {children}
       </ModalPopup>
-    </div>
+    </div>,
+    // layoutEl
+    document.body
   );
 }
 

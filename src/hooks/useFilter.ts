@@ -1,6 +1,5 @@
 import { Question } from "@/types/main.types";
 import { FilteredTopics, QuestionType } from "@/context/context.types";
-import { useEffect } from "react";
 
 function useFilter(
   rawQuestions: Question[],

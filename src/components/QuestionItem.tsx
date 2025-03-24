@@ -1,42 +1,38 @@
 import { MdDeleteForever } from "react-icons/md";
-import Modal from "./Modal";
-import Popup from "./DeleteConfirmPopup";
-import { useRef } from "react";
-import { useSearchParams } from "react-router-dom";
-import useDeleteQuestion from "../hooks/useDeleteQuestion";
-import { useQuestions } from "../context/main.context";
+import { FaPencilAlt } from "react-icons/fa";
 import { Question } from "@/types/main.types";
-import { toast } from "react-hot-toast";
 
 interface QuestionItemProps {
   question: Question;
-  setShowModalId: (id: Question['_id'] | null) => void;
-  setShowItemPopup: (id: Question['_id'] | null) => void;
+  setShowDeletingPopup: (id: Question["_id"] | null) => void;
+  setShowItemPopup: (id: Question["_id"] | null) => void;
+  setShowEditingPopup: (id: Question["_id"] | null) => void;
 }
 
 function QuestionItem({
   question,
-  setShowModalId,
-  setShowItemPopup
+  setShowDeletingPopup,
+  setShowItemPopup,
+  setShowEditingPopup
 }: QuestionItemProps) {
   const letterLimit = 200;
 
-
-
+  const iconStyle = `cursor-pointer text-accent hover:text-accentHover`;
 
   return (
     <li
-      onClick={(e) => {
- 
+      onClick={() => {
         setShowItemPopup(question._id);
       }}
-      className="grid grid-cols-1 gap-4 rounded-middle bg-backgroundSecondary py-8 px-8  hover:-translate-y-1 shadow-dark cursor-pointer transition-all dark:text-textLight text-textDark "
+      className="grid cursor-pointer grid-cols-1 gap-4 rounded-middle bg-backgroundSecondary px-8 py-8 text-[1rem] text-textDark shadow-dark transition-all hover:-translate-y-1 dark:text-textLight"
     >
-      <h1 className="text-secondary border-b border-solid border-gray-500 last:border-b-0 border-l-0 border-r-0 border-t-0">{question.question}</h1>
+      <h1 className="border-b border-l-0 border-r-0 border-t-0 border-solid border-gray-500 text-secondary last:border-b-0">
+        {question.question}
+      </h1>
 
-      <div className="flex flex-col  border-b border-solid border-gray-500 last:border-b-0 border-l-0 border-r-0 border-t-0" >
+      <div className="flex flex-col border-b border-l-0 border-r-0 border-t-0 border-solid border-gray-500 last:border-b-0">
         {question.textAnswer && (
-          <p className="text-tertiary">
+          <p className="text-quaternary">
             {question.textAnswer.length > letterLimit
               ? question.textAnswer.slice(0, letterLimit) + "..."
               : question.textAnswer}
@@ -52,19 +48,27 @@ function QuestionItem({
           : ""}
       </div>
 
-
-      <div className="grid grid-cols-[1fr,_auto] justify-center items-end grid-rows-1 justify-between border-b border-solid border-gray-500 last:border-b-0 border-l-0 border-r-0 border-t-0">
-
+      <div className="grid grid-cols-[1fr,_auto] grid-rows-1 items-end justify-center justify-between border-b border-l-0 border-r-0 border-t-0 border-solid border-gray-500 last:border-b-0">
+        {/* ID */}
         <span className="font-secondary text-[1rem] uppercase">{`id: ${question?._id && question?._id}`}</span>
 
-        <MdDeleteForever
-          onClick={(e) => {
-            e.stopPropagation();
-            setShowModalId(question._id);
-          }}
-          className="h-[3rem] w-[3rem] cursor-pointer text-accentDark dark:text-accent hover:text-accentHover"
-        />
+        <div className="flex gap-4 items-center" >
 
+          {/* Editing icon */}
+          <FaPencilAlt onClick={(e) => {
+            e.stopPropagation();
+            setShowEditingPopup(question._id);
+          }} className={`${iconStyle} h-[2rem] w-[2rem]`} />
+
+          {/* Delete icon */}
+          <MdDeleteForever
+            onClick={(e) => {
+              e.stopPropagation();
+              setShowDeletingPopup(question._id);
+            }}
+            className={`${iconStyle} h-[2.5rem] w-[2.5rem]`}
+          />
+        </div>
       </div>
     </li>
   );

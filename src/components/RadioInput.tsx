@@ -2,17 +2,18 @@ import { motion } from "framer-motion";
 import {DetailedHTMLProps, HTMLAttributes, ReactNode, ChangeEvent} from 'react';
 import { Level } from "@/types/main.types";
 import { TopicOption, TypeQuestionOption, rightAnswerOption } from "@/data/helperData.types";
+import { Dispatch, SetStateAction } from "react";
 
 
 interface RadioInputProps {
   children?: ReactNode;
   checked: boolean;
   id: TypeQuestionOption['id'] | rightAnswerOption['id'] | TopicOption['id'];
-  value: string;
+  value: TypeQuestionOption['id'] | TopicOption['id'] | rightAnswerOption['id'];
   label: TypeQuestionOption['label'] | rightAnswerOption['label'] | TopicOption['label'];
   hidden?: boolean | null;
   addStyles: string;
-  handle?: ((event: string) => void) | null;
+  handle?: Dispatch<SetStateAction<"options" | "text">> | null;
   onChange: (e: ChangeEvent<HTMLInputElement>) => void;
 }
 
@@ -31,7 +32,7 @@ function RadioInput({ children, checked, id, value, onChange, hidden, addStyles,
           value={value}
           onChange={(e) => {
             onChange(e);
-            {handle && handle(e.target.value)};
+            {handle && handle(e.target.value as "options" | "text")};
           }}
         />
         {children}

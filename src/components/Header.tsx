@@ -59,19 +59,21 @@ function Header() {
         width: "100%",
         height,
         backdropFilter: "blur(10px)",
-        opacity,
         display: "flex",
         alignItems: "center",
         justifyContent: "space-between",
         transition: "background 0.3s ease",
         boxShadow,
-        zIndex: 1000
+        zIndex: 50,
+        isolation: "isolate"
     }} className="h-64 px-10  md:px-16 lg:px-48 xl:px-64 w-full">
         <Logo/>
       <Navbar textSize={fontSize} />
       <Switch addStyles="hidden md:block" checked={isDark} onChange={toggleDarkMode} />
       <TbMenuDeep onClick={() => setShowMenu(true)} className="cursor-pointer active:scale-95 block md:hidden" />
     </motion.header>
+
+
 
     <MobileMenu showMenu={showMenu} onClose={setShowMenu} > <div className="absolute z-[9000] w-full h-full inset-0 flex flex-col justify-start pt-32 gap-64 items-center bg-backgroundPrimary" >
       <Switch addStyles="block md:hidden" checked={isDark} onChange={toggleDarkMode} />

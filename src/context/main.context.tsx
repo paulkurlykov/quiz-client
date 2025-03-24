@@ -1,18 +1,15 @@
 import { useContext, createContext, Dispatch, ReactNode } from "react";
 import { useEffect, useReducer } from "react";
-import { Question } from "@/types/main.types";
 import { ActionType, IinitialState, IMainContext } from "./context.types";
 import useGetQuestions from "@/hooks/useGetQuestions";
-import { rightAswerOptions } from "@/data/helperData";
-import { useLocalStorage } from "@/hooks/useLocalStorage";
-import { PersonalRecord } from "./context.types";
+import { useState } from "react";
 
-const baseUrl = import.meta.env.VITE_BASE_URL;
 
 const MainContext = createContext<IMainContext | undefined>(undefined);
 
 const initState: IinitialState = {
   questions: [],
+  question: null,
   status: "good",
   message: null,
   topic: null,
@@ -26,22 +23,47 @@ const initState: IinitialState = {
     successRatio: 0,
     date: new Date(),
   },
+  pagination: {
+    data: [],
+    currentPage: 0,
+    itemsPerPage: 0,
+    totalCount: 0,
+    filteredCount: 0,
+    totalPages: 0,
+    filteredPages: 0,
+  }
 };
 
 function reducer(state: IinitialState, action: ActionType): IinitialState {
   switch (action.type) {
     case "questionsLoaded":
+      // console.log(action.payload);
       return { ...state, questions: action.payload, status: "good" };
+    case "questionLoaded":
+      return { ...state, question: action.payload, status: "good" };
     case "setLoading":
       return { ...state, status: "loading", message: null };
     case "setError":
       return { ...state, status: "error", message: action.payload };
     case "questionUploaded":
+      // console.log(action.payload);
       return {
         ...state,
         status: "good",
         questions: [...state.questions, action.payload],
       };
+    case "questionUpdated":
+        return {
+          ...state,
+          status: "good",
+          question: action.payload,
+        };
+    case "paginatedQuestionsLoaded":
+        return {
+          ...state,
+          status: "good",
+          pagination: action.payload,
+        };
     case "questionDeleted":
       return {
         ...state,
@@ -105,10 +127,14 @@ function reducer(state: IinitialState, action: ActionType): IinitialState {
 }
 
 function MainProvider({ children }: { children: ReactNode }) {
+
+  const [showSubmitResultModal, setShowSubmitResultModal] = useState(false);
+
   const [
     {
       status,
       questions,
+      question,
       topic,
       message,
       currentQuestionIndex,
@@ -118,8 +144,10 @@ function MainProvider({ children }: { children: ReactNode }) {
       maxQuestionsNum,
       successRatio,
       personalRecord,
+      pagination
+
     },
-    dispatch,
+    dispatch
   ] = useReducer(reducer, initState);
 
   useEffect(() => {
@@ -131,6 +159,7 @@ function MainProvider({ children }: { children: ReactNode }) {
       value={{
         status,
         questions,
+        question,
         topic,
         message,
         curDifficultLevel,
@@ -141,12 +170,15 @@ function MainProvider({ children }: { children: ReactNode }) {
         successRatio,
         personalRecord,
         dispatch,
+        pagination,
+        showSubmitResultModal,
+        setShowSubmitResultModal
       }}
     >
       {children}
     </MainContext.Provider>
   );
-}
+} 
 
 function useQuestions() {
   const context = useContext(MainContext);

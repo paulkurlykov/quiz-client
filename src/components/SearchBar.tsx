@@ -13,7 +13,10 @@ function SearchBar({status, query, setQuery}: {status: IinitialState['status'], 
         onChange={(e:ChangeEvent<HTMLInputElement>) => setQuery(e.target.value)}
         value={query}
             className="w-full rounded-[2rem] border border-borderPrimary border-solid px-8 h-[6rem] bg-inputBackgroundSearchBar text-textColor transition-colors" type="text" />
-            {status === "loading" ? <Spinner/> : <IoSearch className="absolute top-[25%] right-10 text-textColor text-[3rem] cursor-pointer hover:text-accentHover active:scale-95 transition-all" />}
+            <div className="absolute  top-[25%] right-10" >
+            {status === "loading" ? <Spinner size={25} /> : <IoSearch className=" text-textColor text-[3rem] cursor-pointer hover:text-accentHover active:scale-95 transition-all" />}
+            </div>
+            
         </div>
     )
 }

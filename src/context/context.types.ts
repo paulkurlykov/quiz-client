@@ -1,5 +1,5 @@
 import { Dispatch } from "react";
-import { Question, Level, MyFormData } from "@/types/main.types";
+import { Question, Level, QuestionFields, PaginationType  } from "@/types/main.types";
 import { DifficultOption } from "@/data/helperData.types";
 import { SetStateAction } from "react";
 import { TopicOption } from "@/data/helperData.types";
@@ -7,6 +7,9 @@ import { TopicOption } from "@/data/helperData.types";
 
 export type ActionType =
   | { type: "questionsLoaded"; payload: Question[] }
+  | { type: "questionLoaded"; payload: Question }
+  | { type: "questionUpdated"; payload: Question }
+  | { type: "paginatedQuestionsLoaded"; payload: PaginationType }
   | { type: "setLoading" }
   | { type: "setError"; payload: string }
   | { type: "questionUploaded"; payload: Question }
@@ -30,9 +33,12 @@ export interface PersonalRecord {
   date: Date;
 }
 
+export type FetchingStatusType = "good" | "loading" | "error";
+
 export interface IinitialState {
   questions: Question[] | [];
-  status: "good" | "loading" | "error";
+  question: Question | null;
+  status: FetchingStatusType;
   message: string | null;
   topic: Level | null;
   curDifficultLevel: DifficultOption["level"] | null;
@@ -42,10 +48,13 @@ export interface IinitialState {
   maxQuestionsNum: number | null;
   successRatio: number;
   personalRecord: PersonalRecord;
+  pagination: PaginationType;
 }
 
 export interface IMainContext extends IinitialState {
   dispatch: Dispatch<ActionType>;
+  showSubmitResultModal: boolean;
+  setShowSubmitResultModal: Dispatch<SetStateAction<boolean>>;
 }
 
 

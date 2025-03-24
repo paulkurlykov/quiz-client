@@ -3,8 +3,9 @@ import { topicOptions } from "@/data/helperData";
 import RadioInputGroup from "./RadioInputGroup";
 import RadioInput from "./RadioInput";
 import { Controller, Control } from "react-hook-form";
-import { MyFormData } from "@/types/main.types";
-function TopicInputGroup({control, addStyles}: {control: Control<MyFormData>, addStyles: string}) {
+import { Level, QuestionFields } from "@/types/main.types";
+function TopicInputGroup({control, addStyles = "", defaultValue}: {control: Control<QuestionFields>, addStyles?: string, defaultValue?: Level}) {
+
   return (
     <ul
     className={`flex items-start justify-between md:justify-start px-8 gap-2 md:gap-12`}
@@ -14,7 +15,7 @@ function TopicInputGroup({control, addStyles}: {control: Control<MyFormData>, ad
         key={option.id}
         name="topic"
         control={control}
-        defaultValue={topicOptions[0]?.id}
+        defaultValue={defaultValue ? defaultValue : topicOptions[0]?.id}
         render={({ field: { onChange, value } }) => (
           <RadioInput
             checked={value === option.id}

@@ -48,6 +48,7 @@ function QuizBody() {
   const { filteredQuestions } = useFilterContext();
 
   const questions = filteredQuestions.length ? filteredQuestions : rawQuestions;
+  
 
   const optionsAnimateVariants = {
     hidden: {

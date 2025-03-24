@@ -20,7 +20,8 @@ export interface TypeQuestionOption {
 
 export interface rightAnswerOption {
     id: "1" | "2" | "3" | "4";
-    label: ""
+    label: "";
+    answer?: string | undefined;
   }
 
   interface LightDifficultLevel {

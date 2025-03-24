@@ -9,19 +9,24 @@ import CodeSnippet from "./CodeSnippet";
 
 interface QuestionItemPopup {
   id: Question["_id"] | null;
-  onClose: () => void;
-  action?: () => void;
+
 }
 
-function QuestionItemPopup({ id, onClose, action }: QuestionItemPopup) {
-  const { questions } = useQuestions();
+function QuestionItemPopup({ id}: QuestionItemPopup) {
+  const { pagination } = useQuestions();
+  
+  const { data: questions } = pagination;
 
-  const question = questions.find((q) => q._id === id);
+  if(!questions.length) return null;
 
-  if (!question) return null;
+
+  const question = questions?.find((q) => q._id === id);
+  
+  if(!question) return null;
+
 
   return (
-    <>
+    <div className="overflow-y-auto">
       <Title className="mb-24" tag="h1">
         {question.question}
       </Title>
@@ -48,7 +53,7 @@ function QuestionItemPopup({ id, onClose, action }: QuestionItemPopup) {
           {<CodeSnippet>{question?.codeSnippet}</CodeSnippet>}
         </div>
       )}
-    </>
+    </div>
   );
 }
 

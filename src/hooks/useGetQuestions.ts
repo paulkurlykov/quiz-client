@@ -1,17 +1,26 @@
 import { Question } from "@/types/main.types";
 import {Dispatch} from 'react';
 import { ActionType } from "@/context/context.types";
-
 import { getQuestions } from "../api/questionApi";
 
-async function useGetQuestions(dispatch: Dispatch<ActionType>){
 
-    // console.log('inside hook useGetQuestion');
-
+async function useGetQuestions(dispatch: Dispatch<ActionType>, params: URLSearchParams | null = null){
     try {
       dispatch({ type: "setLoading" });
-      const questions = await getQuestions();
-      dispatch({ type: "questionsLoaded", payload: questions });
+      if(!params) {
+        console.log('no params exist!');
+        const questions = await getQuestions();
+        console.log(questions);
+        dispatch({ type: "questionsLoaded", payload: questions });
+      } 
+      
+      if(params) {
+        console.log('params exist');
+        const data = await getQuestions(params);
+        console.log(data);
+        dispatch({ type: "paginatedQuestionsLoaded", payload: data });
+      }
+
     } catch (err) {
       if(err instanceof Error) {
         console.error("Exception " + err.message);
