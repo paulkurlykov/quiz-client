@@ -10,7 +10,7 @@ function TextArea({ errorLabel, ...props }: TextAreaProps) {
     <div>
       <textarea
         {...props}
-        className={`bg-inputBackgroundPrimary text-tertiary h-52 w-full rounded-mini border ${errorLabel ? " border-error" : "dark:border-borderAccentLight border-borderAccentDark"} border-solid p-4`}
+        className={`bg-inputBackgroundPrimary text-tertiary h-52 w-full rounded-mini border ${errorLabel ? " border-error" : "border-borderPrimary"} border-solid p-4`}
       />
       <label className="text-error text-[1.5rem]" >{errorLabel}</label>
     </div>

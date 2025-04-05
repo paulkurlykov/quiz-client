@@ -13,6 +13,7 @@ import type { ProgressProps } from "antd";
 import { useFilterContext } from "@/context/filter.context";
 import { topicOptions } from "@/data/helperData";
 import IconMaker from "@/components/IconMaker";
+import useRandomizer from "@/hooks/useRandomizer";
 
 function QuizBody() {
 
@@ -47,7 +48,7 @@ function QuizBody() {
 
   const { filteredQuestions } = useFilterContext();
 
-  const questions = filteredQuestions.length ? filteredQuestions : rawQuestions;
+  const questions = useRandomizer(filteredQuestions.length ? filteredQuestions : rawQuestions, true);
   
 
   const optionsAnimateVariants = {
@@ -182,6 +183,7 @@ function QuizBody() {
 
           {currentQuestion?.answerType === "text" && (
             <div className="flex flex-col gap-4">
+              
               {/* shortcut panel */}
               <div
                 onClick={() => setShowAnswer((st) => !st)}

@@ -42,7 +42,7 @@ type Props = {
 };
 
 function Form({ id, onClose, setShowSubmitResultModal }: Props) {
-  const [questionType, setQuestionType] = useState<TypeQuestionOption['id']>("options");
+  const [questionType, setQuestionType] = useState<TypeQuestionOption['id']>("text");
   const [showResultModal, setShowResultModal] = useState<boolean>(false);
   const { status, dispatch, question } = useQuestions();
   const [searchParams] = useSearchParams();
@@ -178,7 +178,7 @@ function Form({ id, onClose, setShowSubmitResultModal }: Props) {
             <FormSection title="Выбери тип вопроса">
               <RadioInputGroup
                 control={control}
-                defaultValue={defaultValues && defaultValues.answerType}
+                defaultValue={defaultValues ? defaultValues.answerType : "text"}
                 name="answerType"
                 options={typeQuestionOptions}
                 addStyles="flex flex-col"
