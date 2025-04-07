@@ -15,7 +15,7 @@ interface RadioInputGroupBaseProps {
   hidden: boolean | null;
   addStyles: string;
   handle: Dispatch<SetStateAction<"options" | "text">> | null;
-  defaultValue: TypeQuestionOption['id'] | undefined;
+  defaultValue?: TypeQuestionOption['id'] | undefined;
 }
 
 interface TopicOptionsProps extends RadioInputGroupBaseProps {
@@ -57,6 +57,10 @@ function RadioInputGroup({
   handle,
   defaultValue
 }: RadioInputGroupProps) {
+
+
+console.log("defaultValue in RadioInputGroup", defaultValue);
+
   return (
     <>
       <ul

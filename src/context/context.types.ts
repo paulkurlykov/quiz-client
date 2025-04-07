@@ -23,14 +23,16 @@ export type ActionType =
   | { type: "addRightAnswer" }
   | { type: "addWrongAnswer" }
   | { type: "nextQuestion" }
-  | { type: "finishQuiz" }
+  | { type: "finishQuiz"}
   | { type: "clear" }
   | { type: "start" }
-  | { type: "setMaxQuestionsNum", payload: number };
+  | { type: "setMaxQuestionsNum", payload: number }
+  | {type: "updateTimer", payload: number};
 
 export interface PersonalRecord {
   successRatio: number;
   date: Date;
+  timer: number;
 }
 
 export type FetchingStatusType = "good" | "loading" | "error";
@@ -49,6 +51,7 @@ export interface IinitialState {
   successRatio: number;
   personalRecord: PersonalRecord;
   pagination: PaginationType;
+  currentTimer: number;
 }
 
 export interface IMainContext extends IinitialState {

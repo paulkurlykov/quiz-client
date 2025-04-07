@@ -19,9 +19,11 @@ const initState: IinitialState = {
   wrongAnswersNum: 0,
   maxQuestionsNum: null,
   successRatio: 0,
+  currentTimer: 0,
   personalRecord: {
     successRatio: 0,
     date: new Date(),
+    timer: 0
   },
   pagination: {
     data: [],
@@ -95,6 +97,8 @@ function reducer(state: IinitialState, action: ActionType): IinitialState {
         currentQuestionIndex: state.currentQuestionIndex + 1,
         topic: state.questions[state.currentQuestionIndex].topic,
       };
+      case "updateTimer":
+        return {...state, currentTimer: action.payload}
     case "finishQuiz": {
       const successRatio = state.maxQuestionsNum
         ? state.rightAnswersNum / state.maxQuestionsNum
@@ -103,7 +107,7 @@ function reducer(state: IinitialState, action: ActionType): IinitialState {
       return {
         ...state,
         successRatio,
-        personalRecord: { successRatio, date: new Date() },
+        personalRecord: { successRatio, date: new Date(), timer: state.currentTimer},
       };
     }
     case "clear": {
@@ -144,6 +148,7 @@ function MainProvider({ children }: { children: ReactNode }) {
       maxQuestionsNum,
       successRatio,
       personalRecord,
+      currentTimer,
       pagination
 
     },
@@ -169,6 +174,7 @@ function MainProvider({ children }: { children: ReactNode }) {
         maxQuestionsNum,
         successRatio,
         personalRecord,
+        currentTimer,
         dispatch,
         pagination,
         showSubmitResultModal,

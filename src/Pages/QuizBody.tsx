@@ -14,11 +14,14 @@ import { useFilterContext } from "@/context/filter.context";
 import { topicOptions } from "@/data/helperData";
 import IconMaker from "@/components/IconMaker";
 import useRandomizer from "@/hooks/useRandomizer";
+import Timer from "@/components/Timer";
+import useTimer from "@/hooks/useTimer";
 
 function QuizBody() {
 
   const [showAnswer, setShowAnswer] = useState<boolean>(false);
   const [progressBarWidth, setProgressBarWidth] = useState<number>(100);
+
 
   useEffect(() => {
     const updateProgressBarSize = () => {
@@ -73,18 +76,23 @@ function QuizBody() {
   const makeAnswer = (type: "addRightAnswer" | "addWrongAnswer") => {
     dispatch({ type: `${type}` });
     if (currentQuestionIndex === currentQuestionsAmount) {
-      dispatch({ type: "finishQuiz" });
+      dispatch({ type: "finishQuiz"});
       navigate("/finish");
     } else {
       dispatch({ type: "nextQuestion" });
     }
   };
 
-  const twoColors: ProgressProps["strokeColor"] = {
-    "0%": "#ff0000d2",
-    "50%": "#f2ff00cc",
-    "100%": "#149e59",
-  };
+
+
+
+
+  // const twoColors: ProgressProps["strokeColor"] = {
+  //   "0%": "#ff0000d2",
+  //   "50%": "#f2ff00cc",
+  //   "100%": "#149e59",
+  // };
+
 
 
   return (
@@ -125,18 +133,19 @@ function QuizBody() {
           </AnsweredQuestionsAmountStatus>
         </div>
 
-          {/* TOPIC & QUESTIONS AMOUNT */}
+          {/* TOPIC & TIMER & QUESTIONS AMOUNT */}
 
-        <div className="mb-2 flex justify-between md:px-8">
+        <div className="mb-2 flex justify-between md:px-8 items-center">
           <div className="flex items-center gap-4">
             <IconMaker
-              size="3.5rem"
-              color={topicOptions.find((option) => option.id === topic)?.color}
-              name={topic !== null ? topic : "html"}
+              size="4rem"
+              color={topicOptions.find((option) => option.id === currentQuestion.topic)?.color}
+              name={currentQuestion.topic !== null ? currentQuestion.topic : "html"}
             />
-            <span className="uppercase text-textPrimary" >{topic}</span>
+            <span className="uppercase text-textPrimary" >{currentQuestion.topic}</span>
           </div>
-          <span className="font-secondary text-[3rem] font-bold">
+          <Timer />
+          <span className="font-secondary text-[2.5rem] font-bold">
             {currentQuestionIndex}/{currentQuestionsAmount}
           </span>
         </div>
@@ -183,7 +192,7 @@ function QuizBody() {
 
           {currentQuestion?.answerType === "text" && (
             <div className="flex flex-col gap-4">
-              
+
               {/* shortcut panel */}
               <div
                 onClick={() => setShowAnswer((st) => !st)}

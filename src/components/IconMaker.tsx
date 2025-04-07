@@ -11,7 +11,7 @@ interface IconMakerProps {
   className?: string
 }
 
-function IconMaker({ name, color, className }: IconMakerProps) {
+function IconMaker({ name, color, className, size }: IconMakerProps) {
   return (
     <>
       {
@@ -20,24 +20,28 @@ function IconMaker({ name, color, className }: IconMakerProps) {
             <FaHtml5
             className={className}
               style={{color: color }}
+              size={size}
             />
           ),
           css: (
             <FaCss3Alt
             className={className}
             style={{color: color }}
+            size={size}
             />
           ),
           js: (
             <FaJsSquare
             className={className}
             style={{color: color }}
+            size={size}
             />
           ),
           react: (
             <FaReact
             className={className}
             style={{color: color }}
+            size={size}
             />
           ),
           

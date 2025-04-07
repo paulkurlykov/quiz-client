@@ -8,6 +8,8 @@ import { useNavigate, useNavigation } from "react-router-dom";
 import Confetti from "react-dom-confetti";
 import { useState, useEffect } from "react";
 import confettiConfig from "@/helpers/confettiConfig";
+import formatTimer from "@/helpers/formatTimer";
+import DisplayTime from "@/components/DisplayTime";
 
 function FinalPage() {
   const [activeConfetti, setActiveConfetti] = useState<boolean>(false);
@@ -23,6 +25,7 @@ function FinalPage() {
     successRatio,
     rightAnswersNum,
     personalRecord,
+    currentTimer,
     dispatch,
   } = useQuestions();
 
@@ -32,13 +35,15 @@ function FinalPage() {
   >("record", personalRecord);
 
   if (!storedValue || storedValue.successRatio < successRatio) {
-    setValue({ successRatio, date: new Date() });
+    setValue({ successRatio, date: new Date(), timer: currentTimer });
   }
 
   useEffect(() => {
     setActiveConfetti(true);
     setTimeout(() => setActiveConfetti(false), 500);
   }, []);
+
+  const {hours, mins, secs} = formatTimer(currentTimer);
 
   // записать данные, если локал сторедж нет,или если оно меньше, чем результат
 
@@ -53,7 +58,7 @@ function FinalPage() {
         <div className="text-[1.6rem]">
           <div>
             <span>
-              Ты ответил на {rightAnswersNum} вопросов из {maxQuestionsNum}!
+              Ты ответил на {rightAnswersNum} вопросов из {maxQuestionsNum} за {<DisplayTime hours={hours} mins={mins} secs={secs} />}!
             </span>{" "}
             <span>Это {formatPercent(successRatio)} от всего числа.</span>
           </div>

@@ -52,16 +52,16 @@ function Form({ id, onClose, setShowSubmitResultModal }: Props) {
   useEffect(() => {
     if (id) {
       const getQuestionById = async () => {
+        console.log('getting question');
         await useGetQuestion(dispatch, id);
       };
       getQuestionById();
     }
   }, [dispatch, id]);
 
-  const defaultValues = question && id ? { ...question, _id: undefined } : undefined;
+  const defaultValues = question && id ? { ...question, _id: undefined } : { answerType: "text" } as {answerType: "text"|"options"};
 
   console.log('FORM IS RENDERED');
-  console.log(defaultValues);
 
   const textInputWrapperClass =
     "flex flex-col md:flex-row gap-4 md:gap-16 items-start md:items-center justify-start md:flex border border-solid border-borderPrimary p-6 rounded-mini";
@@ -71,13 +71,17 @@ function Form({ id, onClose, setShowSubmitResultModal }: Props) {
     formState: { errors },
     reset,
     control
-  } = useForm<QuestionFields>({ defaultValues });
+  } = useForm<QuestionFields>({ defaultValues});
 
   useEffect(() => {
-    if (question) {
+    if (question && question.options) {
       setQuestionType(question?.answerType)
       reset(defaultValues);
-      rightAswerOptions.map((option, index) => option.answer = defaultValues?.options[index])
+      rightAswerOptions.map((option, index) => {
+        if("options" in defaultValues) {
+          return option.answer = defaultValues?.options[index]
+        }
+      })
     }
 
     return () => {
@@ -122,7 +126,10 @@ function Form({ id, onClose, setShowSubmitResultModal }: Props) {
 
   const onSubmit: SubmitHandler<QuestionFields> = (data) => {
     console.log("submit");
+    console.log(data);
     const finalData = completeDataObject(data);
+    console.log(finalData);
+
     if(!id) {
       useCreateQuestion(finalData, dispatch);
     } else {
@@ -130,10 +137,11 @@ function Form({ id, onClose, setShowSubmitResultModal }: Props) {
       useGetQuestions(dispatch, searchParams);
       onClose && onClose();
     }
+
     reset();
     setShowSubmitResultModal && setShowSubmitResultModal();
     setShowResultModal(true);
-    setQuestionType("options");
+    setQuestionType("text");
     console.log("submitted");
   };
 
@@ -156,7 +164,7 @@ function Form({ id, onClose, setShowSubmitResultModal }: Props) {
             onSubmit={handleSubmit(onSubmit)}
           >
             <FormSection title="Выбери тематику запроса">
-              <TopicInputGroup control={control} defaultValue={defaultValues && defaultValues.topic}/>
+              <TopicInputGroup control={control} defaultValue={"topic" in defaultValues ? defaultValues.topic : undefined}/>
             </FormSection>
 
             <FormSection title="Напиши свой вопрос тут">
@@ -164,7 +172,7 @@ function Form({ id, onClose, setShowSubmitResultModal }: Props) {
                 name="question"
                 control={control}
                 rules={{ required: "Вы не указали вопрос!" }}
-                defaultValue={defaultValues && defaultValues.question}
+                defaultValue={"question" in defaultValues ? defaultValues.question : undefined}
                 render={({ field }) => (
                   <TextArea
                     {...field}
@@ -175,10 +183,12 @@ function Form({ id, onClose, setShowSubmitResultModal }: Props) {
               />
             </FormSection>
 
+
+            {/* ANSWER TYPE */}
             <FormSection title="Выбери тип вопроса">
               <RadioInputGroup
                 control={control}
-                defaultValue={defaultValues ? defaultValues.answerType : "text"}
+                // defaultValue={defaultValues ? defaultValues.answerType : "text"}
                 name="answerType"
                 options={typeQuestionOptions}
                 addStyles="flex flex-col"

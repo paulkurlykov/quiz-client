@@ -18,6 +18,9 @@ interface RadioInputProps {
 }
 
 function RadioInput({ children, checked, id, value, onChange, hidden, addStyles, label, handle = null, ...props }: RadioInputProps) {
+
+console.log("value in RadioInput: ", value);
+
   return (
     <li className={`list-none ${addStyles} flex items-center`} >
       <label
