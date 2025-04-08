@@ -14,12 +14,22 @@ export const DarkModeProvider = ({ children }: { children: ReactNode }) => {
   const [isDark, setIsDark] = useState<boolean>(false);
 
   useEffect(() => {
+
+    if(localStorage.getItem("isDarkMode")) {
+      setIsDark(true);
+    }
+
+  },[])
+
+  useEffect(() => {
     if (isDark) {
         document.documentElement.classList.add("dark");
         document.documentElement.classList.remove("light");
+        localStorage.setItem("isDarkMode", "true");
     } else {
         document.documentElement.classList.add("light");
         document.documentElement.classList.remove("dark");
+        localStorage.setItem("isDarkMode", "false");
     }
 }, [isDark]);
 

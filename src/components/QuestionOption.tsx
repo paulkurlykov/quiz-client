@@ -23,18 +23,19 @@ function QuestionOption({
   const animationOptions = {
     right: {
       border: `2px solid var(--rightAnswer)`,
-      scale: [1, 1.05, 1.1],
-      transition: { duration: .6, ease: [0.455, 0.03, 0.515, 0.555] },
+      y: [0, -40, 40, 0, 0, -40, 40, 0, 0, -40, 40, 0, 0, -40, 40],
+      scale: [1, 1.05],
+      transition: { duration: 2, ease: [0.155, 0.03, 0.115, 0.255] },
     },
     wrong: {
       border: `2px solid var(--wrongAnswer)`,
       x: [0, -80, 80, -80, 80, 0],
-      transition: { duration: 0.4, ease: [0.455, 0.03, 0.515, 0.955] },
+      transition: { duration: 0.5, ease: [0.455, 0.03, 0.515, 0.955] },
     },
     exit: {
       border: "1px solid white",
       transition: { ease: "easeInOut" },
-    },
+    }
   };
 
 
@@ -51,6 +52,7 @@ function QuestionOption({
           }
           dispatch({type: "nextQuestion"});
         }}
+
         animate={controls}
         variants={animationOptions}
         initial={false}

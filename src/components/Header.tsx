@@ -44,11 +44,7 @@ function Header() {
 
   const { isDark, toggleDarkMode } = useDarkModeContext();
 
-
-
-
-
-
+  console.log(isDark);
 
   return (
     <>
@@ -70,7 +66,7 @@ function Header() {
         <Logo/>
       <Navbar textSize={fontSize} />
       <Switch addStyles="hidden md:block" checked={isDark} onChange={toggleDarkMode} />
-      <TbMenuDeep onClick={() => setShowMenu(true)} className="cursor-pointer active:scale-95 block md:hidden" />
+      <TbMenuDeep onClick={() => setShowMenu(true)} className="cursor-pointer text-[3.5rem] active:scale-95 block md:hidden" />
     </motion.header>
 
 
