@@ -1,9 +1,8 @@
 import IconMaker from "./IconMaker";
 import { TopicOption } from "@/data/helperData.types";
 import { useState, useEffect } from "react";
-import { FilteredTopics } from "@/context/context.types";
-import { SetStateAction, Dispatch } from "react";
 import { useFilterContext } from "@/context/filter.context";
+import { baseTopicsCount } from "@/data/helperData";
 
 function TopicFilterUIItem({
   topic,
@@ -16,7 +15,7 @@ function TopicFilterUIItem({
   const [isActive, setIsActive] = useState<boolean>(false);
 
   const setFilteredTopic = (id: TopicOption["id"]) => {
-    if (filteredTopics.length < 4) {
+    if (filteredTopics.length < baseTopicsCount) {
       filteredTopics.includes(id)
       // deleting this id from filteredTopics
         ? dispatch({

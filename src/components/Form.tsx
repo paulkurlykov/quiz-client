@@ -33,7 +33,6 @@ import { TypeQuestionOption } from "@/data/helperData.types";
 import useUpdateQuestion from "@/hooks/useUpdateQuestion";
 import useGetQuestions from "@/hooks/useGetQuestions";
 import { useSearchParams } from "react-router-dom";
-import { useRef } from "react";
 
 type Props = {
   id?: Question["_id"];

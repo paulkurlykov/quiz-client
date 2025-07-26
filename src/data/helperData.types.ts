@@ -5,6 +5,7 @@ export enum TopicColor {
   Css = "#3b82f6",
   Js = "#fcd34d",
   React = "#22d3ee",
+  Vue = "#33A06F"
 }
 
 export interface TopicOption {

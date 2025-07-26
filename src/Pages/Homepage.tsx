@@ -49,7 +49,9 @@ function Homepage() {
 
   }, [answerType, filteredTopics, questions, maxQuestionsNum]);
 
-  // console.log(filteredQuestions.length);
+  console.log('banzai');
+  console.log(filteredQuestions);
+  console.log(filteredTopics);
 
   return (
     <MotionPage>

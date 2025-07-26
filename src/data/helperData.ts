@@ -12,7 +12,12 @@ export const topicOptions: TopicOption[] = [
   { id: "css", label: "", color: TopicColor.Css },
   { id: "js", label: "", color: TopicColor.Js },
   { id: "react", label: "", color: TopicColor.React },
+  {id: "vue", label: "", color: TopicColor.Vue}
 ];
+
+export const baseTopicsCount: number = topicOptions.map(opt => opt.id).length;
+
+
 
 // export const topicOptions: TopicOption[] = [
 //   { id: "html", label: "", color: "#ce5050" },

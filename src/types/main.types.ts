@@ -1,4 +1,4 @@
-export type Level = "js" | "react" | "css" | "html";
+export type Level = "js" | "react" | "css" | "html" | "vue";
 
 // export interface Question {
 //     _id: string;
