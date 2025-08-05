@@ -1,5 +1,4 @@
 import { topicOptions } from "@/data/helperData"
-import { Divider } from "antd"
 import { Level } from "@/types/main.types";
 
 type Props = {

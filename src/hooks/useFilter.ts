@@ -1,5 +1,6 @@
 import { Question } from "@/types/main.types";
 import { FilteredTopics, QuestionType } from "@/context/context.types";
+import { baseTopicsCount } from "@/data/helperData";
 
 function useFilter(
   rawQuestions: Question[],
@@ -10,7 +11,7 @@ function useFilter(
   let result: Question[] = [];
 
     /// filter by topics
-  if (filterTopics.length < 4) {
+  if (filterTopics.length < baseTopicsCount) {
     filterTopics.map((topic) => {
       result = result.concat(
         rawQuestions.filter((question) => question.topic === topic),

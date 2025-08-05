@@ -36,6 +36,7 @@ function ManageQuestions(): JSX.Element | null {
     "css",
     "js",
     "react",
+    "vue"
   ]);
   const [query, setQuery] = useState<string>("");
   const [searchParams, setSearchParams] = useSearchParams();
@@ -64,7 +65,7 @@ function ManageQuestions(): JSX.Element | null {
 
 
 
-  // console.log(pagination);
+  console.log(pagination);
 
 
 // getting RawQuestions (already filtered and paginated by backend)
@@ -74,6 +75,8 @@ function ManageQuestions(): JSX.Element | null {
   usePagination(filteredCount, ITEMS_PER_PAGE);
   
   if (!rawQuestions) return null;
+
+  console.log(rawQuestions);
 
   // Randomizer
   const randomizedQuestions = useRandomizer(rawQuestions, isRandomizerOn);
