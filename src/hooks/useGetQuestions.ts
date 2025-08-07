@@ -10,17 +10,14 @@ async function useGetQuestions(dispatch: Dispatch<ActionType>, params: URLSearch
       if(!params) {
         console.log('no params exist!');
         const questions = await getQuestions();
-        console.log(questions);
+        // console.log(questions);
         dispatch({ type: "questionsLoaded", payload: questions });
       } 
       
       if(params) {
         console.log('params exist');
-        for (const [key, value] of params) {
-          console.log(`${key}, ${value}`);
-        }
         const data = await getQuestions(params);
-        console.log(data);
+        // console.log(data);
         dispatch({ type: "paginatedQuestionsLoaded", payload: data });
       }
 

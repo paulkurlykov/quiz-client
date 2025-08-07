@@ -25,24 +25,34 @@ import Form from "@/components/Form";
 import SubmitPopup from "@/components/SubmitPopup";
 
 function ManageQuestions(): JSX.Element | null {
-  const [showDeletingPopup, setShowDeletingPopup] = useState<Question["_id"] | null>(null);
+  const [showDeletingPopup, setShowDeletingPopup] = useState<
+    Question["_id"] | null
+  >(null);
   const [showItemPopup, setShowItemPopup] = useState<Question["_id"] | null>(
     null,
   );
-  const [showEditingPopup, setShowEditingPopup] = useState<Question["_id"] | null>(null);
+  const [showEditingPopup, setShowEditingPopup] = useState<
+    Question["_id"] | null
+  >(null);
   const [isRandomizerOn, setIsRandomizerOn] = useState<boolean>(false);
   const [filteredTopics, setFilteredTopics] = useState<Level[]>([
     "html",
     "css",
     "js",
     "react",
-    "vue"
+    "vue",
   ]);
   const [query, setQuery] = useState<string>("");
   const [searchParams, setSearchParams] = useSearchParams();
 
   // DATA ENTRYPOINT
-  const { pagination, status, dispatch, showSubmitResultModal, setShowSubmitResultModal } = useQuestions();
+  const {
+    pagination,
+    status,
+    dispatch,
+    showSubmitResultModal,
+    setShowSubmitResultModal,
+  } = useQuestions();
 
   useEffect(() => {
     if (!searchParams.has("page") && !searchParams.has("limit")) {
@@ -52,37 +62,58 @@ function ManageQuestions(): JSX.Element | null {
     }
   }, [searchParams]);
 
-
-
   useEffect(() => {
     const getPaginatedQuestions = async () => {
-      searchParams.set("topicFilter", filteredTopics.join(","))
+      searchParams.set("topicFilter", filteredTopics.join(","));
       setSearchParams(searchParams);
       await useGetQuestions(dispatch, searchParams);
     };
     getPaginatedQuestions();
-  }, [searchParams, dispatch, filteredTopics]);
+  }, [dispatch, filteredTopics]);
 
+  useEffect(() => {
+    const setQueryParams = () => {
+      if (query) {
+        searchParams.set("queryFilter", query);
+        setSearchParams(searchParams);
+      } else {
+        searchParams.delete("queryFilter");
+        setSearchParams(searchParams);
+      }
+    };
 
+    const getFilteredByQueryQuestions = async () => {
+      await useGetQuestions(dispatch, searchParams);
+    }
 
-  console.log(pagination);
+    if(query.length >= 3) {
+      getFilteredByQueryQuestions()
+    }
 
+    setQueryParams();
+  }, [query]);
 
-// getting RawQuestions (already filtered and paginated by backend)
-  const { data: rawQuestions, totalCount, totalPages, filteredCount, filteredPages } = pagination;
-  
-  const { currentPage, previousPage, nextPage, goToPage } =
-  usePagination(filteredCount, ITEMS_PER_PAGE);
-  
+  // getting RawQuestions, 10 questions by default (already filtered and paginated by backend)
+  const {
+    data: rawQuestions,
+    totalCount,
+    totalPages,
+    filteredCount,
+    filteredPages,
+  } = pagination;
+
+  const { currentPage, previousPage, nextPage, goToPage } = usePagination(
+    filteredCount,
+    ITEMS_PER_PAGE,
+  );
+
   if (!rawQuestions) return null;
-
-  console.log(rawQuestions);
 
   // Randomizer
   const randomizedQuestions = useRandomizer(rawQuestions, isRandomizerOn);
 
   // finally questions
-  const questions = useSearch(randomizedQuestions, query);
+  const questions = randomizedQuestions;
 
   const deleteHandle = async (id: Question["_id"]) => {
     setShowDeletingPopup(null);
@@ -115,7 +146,7 @@ function ManageQuestions(): JSX.Element | null {
               Управление вопросами
             </Title>
 
-            <Title  className="font-normal"  tag="h4">
+            <Title className="font-normal" tag="h4">
               Всего вопросов:{" "}
               <span className="font-secondary">{totalCount}</span>
             </Title>
@@ -130,10 +161,7 @@ function ManageQuestions(): JSX.Element | null {
           </div>
 
           <div className="flex flex-col gap-4">
-            <Filter
-              onClick={filterClickHandler}
-              options={filteredTopics}
-            />
+            <Filter onClick={filterClickHandler} options={filteredTopics} />
 
             <div className="flex gap-2">
               <span>Randomize it!</span>
@@ -164,9 +192,6 @@ function ManageQuestions(): JSX.Element | null {
           goToPage={goToPage}
         />
 
-
-
-
         {showDeletingPopup && (
           <Modal onClose={() => setShowDeletingPopup(null)}>
             {" "}
@@ -181,9 +206,7 @@ function ManageQuestions(): JSX.Element | null {
 
         {showItemPopup && (
           <Modal onClose={() => setShowItemPopup(null)}>
-            <QuestionItemPopup
-              id={showItemPopup}
-            />
+            <QuestionItemPopup id={showItemPopup} />
           </Modal>
         )}
 
@@ -194,19 +217,19 @@ function ManageQuestions(): JSX.Element | null {
               onClose={() => setShowEditingPopup(null)}
               setShowSubmitResultModal={() => setShowSubmitResultModal(true)}
             />
+          </Modal>
+        )}
 
-          </Modal>)}
-
-          {status !== "loading" && showSubmitResultModal && (
-        <Modal onClose={() => setShowSubmitResultModal(false)}>
-          {" "}
-          <SubmitPopup
-            action={() => console.log("action")}
-            onClose={() => setShowSubmitResultModal(false)}
-            type="success"
-          />{" "}
-        </Modal>
-      )}
+        {status !== "loading" && showSubmitResultModal && (
+          <Modal onClose={() => setShowSubmitResultModal(false)}>
+            {" "}
+            <SubmitPopup
+              action={() => console.log("action")}
+              onClose={() => setShowSubmitResultModal(false)}
+              type="success"
+            />{" "}
+          </Modal>
+        )}
       </div>
     </MotionPage>
   );
