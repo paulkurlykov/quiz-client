@@ -86,7 +86,7 @@ function ManageQuestions(): JSX.Element | null {
       await useGetQuestions(dispatch, searchParams);
     }
 
-    if(query.length >= 3) {
+    if(query.length >= 3 || !query) {
       getFilteredByQueryQuestions()
     }
 
