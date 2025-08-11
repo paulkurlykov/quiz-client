@@ -4,6 +4,38 @@ import Title from "@/components/Title";
 
 function AboutPage() {
 
+
+  const arr = Array(5).fill("1");
+  const arr2 = Array.from({length: 12}, (_, i) => `index #${i}`);
+
+  class Next {
+    #radeon = 'Radeonich';
+    static potatoes = 'Belarus'
+
+    get radeon () {
+      return this.#radeon;
+    }
+  }
+
+  class Forward extends Next {
+    #freesbue = 'Guga-Gacha'
+    static forwa = 'Forawrd'
+
+  }
+
+  const next = new Next();
+  const forward = new Forward();
+
+  // console.log(Next.#radeon)
+  console.log(next.radeon);
+
+
+
+
+  // console.log(arr);
+  // console.log(arr2);
+
+
   const erorr = new Error('this is for ERROR test')
 
     const codeString = `const map = new Map();
