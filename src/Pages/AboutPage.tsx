@@ -28,6 +28,7 @@ function AboutPage() {
 
   // console.log(Next.#radeon)
   console.log(next.radeon);
+  console.log('ACTIONS REALLY WORK!')
 
   
   const erorr = new Error('this is for ERROR test')

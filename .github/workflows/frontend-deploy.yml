@@ -1,0 +1,26 @@
+name: Build and Deploy Frontend
+
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+  build-and-deploy:
+    runs-on: self-hosted
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Deploy Nginx config
+        run: | 
+          sudo rm -f /etc/nginx/sites-enabled/default
+          sudo ln -sf $GITHUB_WORKSPACE/nginx/quiz.conf /etc/nginx/sites-enabled/quizapp.conf
+          sudo nginx -t
+
+      - name: Build and Deploy
+        run: |
+          git pull
+          npm install
+          npm run build
+          sudo systemctl restart nginx
