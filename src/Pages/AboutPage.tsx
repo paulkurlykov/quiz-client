@@ -33,9 +33,7 @@ function AboutPage() {
 
 
   // console.log(arr);
-  // console.log(arr2);
-
-
+  
   const erorr = new Error('this is for ERROR test')
 
     const codeString = `const map = new Map();
