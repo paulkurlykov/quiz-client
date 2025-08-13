@@ -21,6 +21,6 @@ jobs:
       - name: Build and Deploy
         run: |
           git pull
-          npm install
+          npm ci
           npm run build
           sudo systemctl restart nginx
