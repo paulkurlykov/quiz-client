@@ -12,7 +12,7 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Deploy Nginx config
+      - name: Set Nginx config
         run: | 
           sudo rm -f /etc/nginx/sites-enabled/default
           sudo ln -sf $GITHUB_WORKSPACE/nginx/quiz.conf /etc/nginx/sites-enabled/quizapp.conf
